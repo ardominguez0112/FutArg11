@@ -1,0 +1,358 @@
+/* ====================== */
+/* === FUENTE CUSTOM === */
+/* ====================== */
+@font-face {
+    font-family: 'AdiCup Q 2022';
+    src: url('../fonts/adicup.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ====================== */
+/* === GENERAL STYLES === */
+/* ====================== */
+body {
+    background-color: #0c1f2c;
+    color: #e6f0fa;
+    font-family: 'AdiCup Q 2022', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    body > .container {
+        flex: 1;
+    }
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0c1f2c;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4dc3ff;
+    border-radius: 10px;
+}
+
+
+/* ====================== */
+/* === NAVBAR === */
+/* ====================== */
+.custom-navbar {
+    background-color: #00111d;
+    border-bottom: 1px solid #003355;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .custom-navbar .navbar-brand,
+    .custom-navbar .nav-link,
+    .custom-navbar .navbar-text {
+        color: #e6f0fa !important;
+        transition: color 0.3s ease;
+    }
+
+        .custom-navbar .nav-link:hover {
+            color: #4dc3ff !important;
+        }
+
+    .custom-navbar .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+.nav-logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+    .custom-navbar .navbar-brand:hover,
+    .nav-logo:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+
+/* ====================== */
+/* === TITULOS === */
+/* ====================== */
+.titulo-grid {
+    color: #4dc3ff;
+    text-shadow: 1px 1px 4px #002e4d;
+    font-weight: 700;
+}
+
+.card-title {
+    font-family: 'AdiCup Q 2022', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #e6f0fa;
+    transition: color 0.3s ease;
+}
+
+.card:hover .card-title {
+    color: #4dc3ff;
+}
+
+
+/* ====================== */
+/* === GRID FUTARG === */
+/* ====================== */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    background-color: #00111d;
+    border: 1px solid #4dc3ff;
+    margin: 3px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+    .grid-cell img {
+        max-width: 60%;
+        max-height: 60%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .grid-cell span {
+        font-size: 0.75rem;
+        margin-top: 4px;
+    }
+
+    .grid-cell:hover {
+        background-color: #004080;
+        cursor: pointer;
+    }
+
+
+/* ====================== */
+/* === WORDLE FUTARG === */
+/* ====================== */
+.wordle-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.wordle-row {
+    display: flex;
+    justify-content: center;
+}
+
+#wordle-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.wordle-cell {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #4dc3ff;
+    background-color: #00111d;
+    color: #e6f0fa;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 48px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+    .wordle-cell.correct {
+        background-color: #4dc3ff; /* Verde/azul acento FutArg */
+        color: #00111d;
+    }
+
+    .wordle-cell.present {
+        background-color: #c9b458; /* Amarillo pista parcial */
+        color: #00111d;
+    }
+
+    .wordle-cell.absent {
+        background-color: #787c7e; /* Gris */
+        color: #fff;
+    }
+
+
+/* ====================== */
+/* === INPUTS & BOTONES === */
+/* ====================== */
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.jugador-input {
+    width: 280px;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #4dc3ff;
+    background-color: #e6f7ff;
+    color: #002e4d;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .jugador-input:focus {
+        outline: none;
+        border-color: #66d0ff;
+        box-shadow: 0 0 8px #66d0ff;
+    }
+
+.btn-enter, .btn-rendirse {
+    background-color: #00111d;
+    color: #4dc3ff;
+    border: 2px solid #4dc3ff;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .btn-enter:hover, .btn-rendirse:hover {
+        background-color: #003355;
+        border-color: #66d0ff;
+        color: #66d0ff;
+        cursor: pointer;
+    }
+
+
+/* ====================== */
+/* === CARDS === */
+/* ====================== */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #00111d;
+    color: #e6f0fa;
+    box-shadow: 0 3px 8px rgba(0, 77, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+    .card:hover {
+        transform: translateY(-8px) scale(1.04);
+        box-shadow: 0 12px 20px rgba(77, 195, 255, 0.6);
+        background-color: #003355;
+        color: #4dc3ff;
+    }
+
+.card-body {
+    padding: 1.2rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: filter 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    filter: brightness(0.85);
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #a0cfff;
+    transition: color 0.3s ease;
+}
+
+.card:hover .card-text {
+    color: #4dc3ff;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ====================== */
+/* === RESPONSIVE === */
+/* ====================== */
+@media (max-width: 768px) {
+    .grid-cell {
+        width: 80px;
+        height: 80px;
+        font-size: 0.75rem;
+    }
+
+    .jugador-input {
+        width: 200px;
+        font-size: 1rem;
+    }
+
+    .card-img-top {
+        height: 140px;
+    }
+
+    .wordle-cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        line-height: 40px;
+    }
+
+    .btn-enter, .btn-rendirse {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .row.text-center > .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

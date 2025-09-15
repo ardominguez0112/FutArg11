@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Lobby de Impostores";
+}
+
+<div class="container text-center mt-5">
+    <h2>CREA UNA SALA:</h2>
+    <div class="my-3">
+        <input type="text" id="txtNombreCrear" placeholder="Tu nombre" class="form-control mb-2" />
+        <button class="btn btn-primary" onclick="crearSala()">Crear Sala</button>
+    </div>
+
+    <h2>O UNITE A UNA CON UN CÓDIGO:</h2>
+    <div class="my-3">
+        <input type="text" id="txtCodigoUnirse" placeholder="Código de sala" class="form-control mb-2" />
+        <input type="text" id="txtNombreUnirse" placeholder="Tu nombre" class="form-control mb-2" />
+        <button class="btn btn-secondary" onclick="unirseSala()">Unirse</button>
+    </div>
+</div>
+
+<!-- Popup de sala -->
+<div id="popupSala" class="modal" style="color:black; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.25);
+            background-image:url('/images/amongus.jpg');
+            background-size:cover;
+            background-position:center;">
+    <div class="modal-dialog" style="max-width:500px; margin:auto; margin-top:10vh;">
+        <div class="modal-content p-4" style="border-radius:15px; box-shadow:none; background-color:#fefefe;">
+            <h3 style="color:#0d6efd; margin-bottom:15px;">Código de sala: <span id="codigoSala" style="font-weight:bold;"></span></h3>
+
+            <div id="listaJugadores" style="max-height:200px; overflow-y:auto; border:1px solid #ddd; border-radius:8px; padding:8px; background-color:#fafafa; margin-bottom:15px;"></div>
+
+            <div id="configuracionOwner" style="display:none; margin-top:15px; padding:15px; border:1px solid #ddd; border-radius:10px; background-color:#f8f9fa;">
+                <label style="font-weight:600; margin-bottom:5px;">Cantidad de impostores:</label>
+                <input type="number" id="numImpostores" min="1" value="1" style="width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;" />
+                <button class="btn btn-success" style="width:100%; font-weight:bold; font-size:1.05rem;" onclick="iniciarPartida()">Iniciar Partida</button>
+            </div>
+
+            <div id="contador" style="margin-top:15px; text-align:center; font-weight:bold; color:#6c757d;"></div>
+            <div id="rolJugador" style="margin-top:10px; text-align:center; font-weight:bold; color:#ffc107;"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/js/impostorLobby.js"></script>
+}

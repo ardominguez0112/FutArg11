@@ -1,0 +1,227 @@
+﻿@model FutArg11.Models.ViewModels.WordleViewModel
+
+@{
+    ViewData["Title"] = "FutArg Wordle";
+    var maxIntentos = 6;
+    var apellido = Model.ApellidoObjetivo;
+    var letrasSinEspacios = apellido.Replace(" ", "");
+}
+
+<h1 class="text-center my-4">FutArg Wordle</h1>
+
+<div class="row">
+<div class="container wordle-container text-center">
+
+    <!-- Tablero -->
+    <div id="wordle-board" class="mb-4">
+        @for (int i = 0; i < maxIntentos; i++)
+        {
+            <div class="d-flex justify-content-center mb-2">
+                @{
+                    var colCount = 0; // ✅ Solo letras reales
+                }
+                @for (int j = 0; j < apellido.Length; j++)
+                {
+                    if (apellido[j] == ' ')
+                    {
+                        <div class="wordle-cell empty-space"></div>
+                    }
+                    else
+                    {
+                        <div class="wordle-cell" data-row="@i" data-col="@colCount"></div>
+                        colCount++;
+                    }
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Botones finales -->
+    <div id="end-game-buttons" style="display:none;" class="mb-3">
+        <h3 id="end-message" class="mb-3"></h3>
+        <button id="restart-btn" class="btn btn-success me-2">Volver a jugar</button>
+        <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
+    </div>
+
+    <!-- Botón enviar -->
+    <button id="submit-btn" class="btn btn-primary">Enter</button>
+
+</div>
+<div class="col-md-4">
+    <h4>Pistas</h4>
+    <ul class="list-unstyled">
+        <li><img src="~/diego10.jpg" width="40">Pais:</li>
+        <li>Edad:</li>
+        <li>Clubes: </li>
+        <li>Títulos:</li>
+        <li>Posición:</li>
+        <li>Apodo:</li>
+    </ul>
+</div>
+</div>
+
+@section Styles {
+    <style>
+        .wordle-cell {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #888;
+            margin: 2px;
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+            .wordle-cell.correct {
+                background-color: green;
+                color: white;
+                border-color: green;
+            }
+
+            .wordle-cell.present {
+                background-color: goldenrod;
+                color: white;
+                border-color: goldenrod;
+            }
+
+            .wordle-cell.absent {
+                background-color: #888;
+                color: white;
+                border-color: #888;
+            }
+
+            .wordle-cell.empty-space {
+                width: 60px;
+                height: 60px;
+                margin: 2px;
+                border: none;
+                background: transparent;
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        const rows = @maxIntentos;
+        const rawWord = "@apellido";
+        const word = rawWord.replace(/\s/g, "").toUpperCase();
+        const maxCols = word.length;
+
+        let currentRow = 0;
+        let currentCol = 0;
+
+        const submitBtn = document.getElementById('submit-btn');
+        const endButtons = document.getElementById('end-game-buttons');
+        const endMessage = document.getElementById('end-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+
+        document.addEventListener('keydown', handleKey);
+        submitBtn.addEventListener('click', submitWord);
+        restartBtn.addEventListener('click', () => location.reload());
+        cancelBtn.addEventListener('click', () => alert('Gracias por jugar!'));
+
+        function handleKey(e) {
+            if (currentRow >= rows) return;
+
+            if (e.key === 'Backspace') {
+                if (currentCol > 0) {
+                    currentCol--;
+                    setCell(currentRow, currentCol, "");
+                }
+                e.preventDefault();
+            }
+            else if (/^[a-zA-Z]$/.test(e.key)) {
+                if (currentCol < maxCols) {
+                    setCell(currentRow, currentCol, e.key.toUpperCase());
+                    currentCol++;
+                }
+                e.preventDefault();
+            }
+            else if (e.key === 'Enter') {
+                if (currentCol === maxCols) {
+                    submitWord();
+                } else {
+                    alert(`Completa las ${maxCols} letras antes de enviar.`);
+                }
+                e.preventDefault();
+            }
+        }
+
+        function submitWord() {
+            if (currentCol !== maxCols) {
+                alert(`Completa las ${maxCols} letras antes de enviar.`);
+                return;
+            }
+
+            let attempt = "";
+            for (let col = 0; col < maxCols; col++) {
+                attempt += getCell(currentRow, col).textContent || "";
+            }
+            attempt = attempt.toUpperCase();
+
+            let targetArr = word.split("");
+            let attemptArr = attempt.split("");
+            let checked = Array(targetArr.length).fill(false);
+
+            // Correctas
+            for (let col = 0; col < maxCols; col++) {
+                let cell = getCell(currentRow, col);
+                if (attemptArr[col] === targetArr[col]) {
+                    cell.classList.add('correct');
+                    checked[col] = true;
+                }
+            }
+
+            // Presentes y ausentes
+            for (let col = 0; col < maxCols; col++) {
+                let cell = getCell(currentRow, col);
+                if (cell.classList.contains('correct')) continue;
+
+                let idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[col]);
+                if (idx !== -1) {
+                    cell.classList.add('present');
+                    checked[idx] = true;
+                } else {
+                    cell.classList.add('absent');
+                }
+            }
+
+            if (attempt === word) {
+                endMessage.textContent = `¡Ganaste! Respuesta: ${rawWord}`;
+                finishGame();
+                return;
+            }
+
+            currentRow++;
+            currentCol = 0;
+
+            if (currentRow >= rows) {
+                endMessage.textContent = `Juego terminado. La respuesta era: ${rawWord}`;
+                finishGame();
+            }
+        }
+
+        function getCell(row, col) {
+            return document.querySelector(`.wordle-cell[data-row="${row}"][data-col="${col}"]`);
+        }
+
+        function setCell(row, col, letter) {
+            const cell = getCell(row, col);
+            if (!cell) return;
+            cell.textContent = letter;
+            cell.classList.remove('correct', 'present', 'absent');
+        }
+
+        function finishGame() {
+            submitBtn.style.display = 'none';
+            endButtons.style.display = 'block';
+            currentRow = rows;
+        }
+    </script>
+}

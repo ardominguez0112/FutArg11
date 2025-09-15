@@ -1,0 +1,29 @@
+﻿@model List<FutArg11.Models.Entities.Jugador>
+
+@{
+    ViewData["Title"] = "Jugadores";
+}
+
+<h2>Jugadores cargados desde CSV</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th>Clubes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jugador in Model)
+        {
+            <tr>
+                <td>@jugador.NombreCompleto</td>
+                <td>@jugador.Nacionalidad</td>
+                <td>
+                    @string.Join(", ", jugador.Clubes.Select(c => c.Nombre))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

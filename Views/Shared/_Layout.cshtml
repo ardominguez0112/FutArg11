@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FutArg11</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FutArg11.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-wV0g+ONen9U...etc..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar custom-navbar mb-3">
+            <div class="container justify-content-center align-items-center">
+                <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
+                    <img src="~/images/logoafa.png" alt="Left Logo" class="nav-logo me-2">
+                </a>
+                <a class="navbar-brand mx-2" asp-area="" asp-controller="Home" asp-action="Index">Fut-arg 11</a>
+                <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
+                    <img src="~/images/logoafa.png" alt="Right Logo" class="nav-logo ms-2">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container flex-grow-1">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @* <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2025 - FutArg11 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+     </footer> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "FutArg Grid";
+}
+
+<h2 class="text-center my-4 titulo-grid">FutArg Grid</h2>
+
+<div class="grid-container container mb-4">
+    <div class="row">
+        @for (int fila = 0; fila < 3; fila++)
+
+        {
+            <div class="d-flex justify-content-center mb-2">
+                @for (int col = 0; col < 3; col++)
+
+                {
+                    <div class="grid-cell d-flex align-items-center justify-content-center" data-fila="@fila" data-col="@col">
+                        <!-- Aquí va la imagen y nombre del jugador si acierta -->
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<div class="input-container text-center mb-5">
+    <input id="inputJugador" type="text" class="form-control jugador-input d-inline-block" placeholder="Ingresá un jugador..." />
+    <button class="btn btn-enter" id="btnEnter" title="Ingresar jugador">
+        <i class="fas fa-arrow-right"></i>
+    </button>
+    <button class="btn btn-rendirse" id="btnRendirse" title="Rendirse">
+        <i class="fas fa-flag"></i>
+    </button>
+</div>

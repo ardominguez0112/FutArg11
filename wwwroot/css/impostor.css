@@ -1,0 +1,91 @@
+﻿/* ====================== */
+/* === POPUP IMPOSTOR === */
+/* ====================== */
+.impostor-popup {
+    display: none; /* empieza oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.impostor-popup-dialog {
+    width: 80%;
+    max-width: 900px;
+}
+
+.impostor-popup-content {
+    background-color: #000;
+    color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    text-align: center;
+    font-family: 'AdiCup Q 2022', sans-serif;
+}
+
+/* Lista de jugadores */
+#listaJugadores ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+#listaJugadores li {
+    margin-bottom: 5px;
+}
+
+/* Inputs y botones del popup */
+#popupSala input[type="number"] {
+    width: 100px;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid #4dc3ff;
+    background-color: #e6f7ff;
+    color: #002e4d;
+}
+
+#popupSala button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #4dc3ff;
+    background-color: #00111d;
+    color: #4dc3ff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+    #popupSala button:hover {
+        background-color: #003355;
+        border-color: #66d0ff;
+        color: #66d0ff;
+        cursor: pointer;
+    }
+
+/* Contador y rol jugador */
+#contador {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+#rolJugador h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+#rolJugador .impostor {
+    color: red;
+    font-weight: bold;
+}
+
+#rolJugador .jugador {
+    color: green;
+    font-weight: bold;
+}
