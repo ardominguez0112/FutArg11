@@ -306,6 +306,11 @@ html, body {
     color: inherit;
 }
 
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 
 /* ====================== */
 /* === RESPONSIVE === */
@@ -355,4 +360,6 @@ html, body {
         flex: 0 0 100%;
         max-width: 100%;
     }
+
+    
 }
