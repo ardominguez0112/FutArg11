@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Sala de Penales";
+    var codigoSala = ViewBag.CodigoSala as string;
+}
+
+<div class="container text-center">
+    <h3>Sala de Penales: <span id="codigoSala"></span></h3>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <h4>Equipo 1</h4>
+            <ul id="equipo1" class="list-group mb-2"></ul>
+            <label>Arquero:</label>
+            <select id="arqueroEquipo1" class="form-select" onchange="asignarArquero(1, this.value)"></select>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Equipo 2</h4>
+            <ul id="equipo2" class="list-group mb-2"></ul>
+            <label>Arquero:</label>
+            <select id="arqueroEquipo2" class="form-select" onchange="asignarArquero(2, this.value)"></select>
+        </div>
+    </div>
+
+    <button id="btnIniciar" class="btn btn-success mt-3" onclick="iniciarPartida()" style="display:none;">
+        Iniciar Partida
+    </button>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/js/penales.js"></script>
+}

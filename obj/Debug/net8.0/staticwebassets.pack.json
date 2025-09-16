@@ -29,6 +29,14 @@
       "PackagePath": "staticwebassets\\images\\amongus.jpg"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco.png",
+      "PackagePath": "staticwebassets\\images\\arco.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco2.png",
+      "PackagePath": "staticwebassets\\images\\arco2.png"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\diego10.jpg",
       "PackagePath": "staticwebassets\\images\\diego10.jpg"
     },
@@ -53,8 +61,20 @@
       "PackagePath": "staticwebassets\\images\\logoafa.png"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\messipenal.jpg",
+      "PackagePath": "staticwebassets\\images\\messipenal.jpg"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\stadium.jpg",
+      "PackagePath": "staticwebassets\\images\\stadium.jpg"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\js\\impostorLobby.js",
       "PackagePath": "staticwebassets\\js\\impostorLobby.js"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\js\\penales.js",
+      "PackagePath": "staticwebassets\\js\\penales.js"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\js\\site.js",

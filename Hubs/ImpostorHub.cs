@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using System.Text.RegularExpressions;
-
-namespace FutArg11.Hubs
+﻿namespace FutArg11.Hubs
 {
     using Microsoft.AspNetCore.SignalR;
     using System.IO;

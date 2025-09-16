@@ -37,4 +37,5 @@ app.MapControllerRoute(
 
 
 app.MapHub<ImpostorHub>("/impostorHub");
+app.MapHub<PenalesHub>("/penaleshub");
 app.Run();

@@ -13,14 +13,23 @@
 <body>
     <header>
         <nav class="navbar custom-navbar mb-3">
-            <div class="container justify-content-center align-items-center">
-                <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
-                    <img src="~/images/logoafa.png" alt="Left Logo" class="nav-logo me-2">
-                </a>
-                <a class="navbar-brand mx-2" asp-area="" asp-controller="Home" asp-action="Index">Fut-arg 11</a>
-                <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
-                    <img src="~/images/logoafa.png" alt="Right Logo" class="nav-logo ms-2">
-                </a>
+            <div class="container d-flex flex-column align-items-center">
+                <div class="d-flex justify-content-center align-items-center mb-1">
+                    <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
+                        <img src="~/images/logoafa.png" alt="Left Logo" class="nav-logo me-2">
+                    </a>
+
+                    <a class="navbar-brand mx-2" asp-area="" asp-controller="Home" asp-action="Index">Fut-arg 11</a>
+
+                    <a href="https://www.ligaprofesional.ar/" target="_blank" rel="noopener noreferrer" class="nav-logo-link">
+                        <img src="~/images/logoafa.png" alt="Right Logo" class="nav-logo ms-2">
+                    </a>
+                </div>
+
+                <!-- Branding pequeño centrado -->
+                <div style="font-size:0.7rem; color:gray;">
+                    Developed by agusddomiinguez
+                </div>
             </div>
         </nav>
     </header>
@@ -29,12 +38,6 @@
             @RenderBody()
         </main>
     </div>
-
-    @* <footer class="border-top footer text-muted">
-    <div class="container">
-    &copy; 2025 - FutArg11 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-     </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
