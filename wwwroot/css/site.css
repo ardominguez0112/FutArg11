@@ -3,11 +3,10 @@
 /* ====================== */
 @font-face {
     font-family: 'AdiCup Q 2022';
-    src: url('../fonts/adicup.ttf') format('truetype');
+    src: url('/fonts/AdiCupQ2022.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 
 /* ====================== */
 /* === GENERAL STYLES === */

@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\images\\arco2.png"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco3.png",
+      "PackagePath": "staticwebassets\\images\\arco3.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\cancha.jpg",
+      "PackagePath": "staticwebassets\\images\\cancha.jpg"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\diego10.jpg",
       "PackagePath": "staticwebassets\\images\\diego10.jpg"
     },
@@ -53,8 +61,16 @@
       "PackagePath": "staticwebassets\\images\\futargwordle.jpg"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\guante.png",
+      "PackagePath": "staticwebassets\\images\\guante.png"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor.jpg",
       "PackagePath": "staticwebassets\\images\\impostor.jpg"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor2.jpg",
+      "PackagePath": "staticwebassets\\images\\impostor2.jpg"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\logoafa.png",
@@ -63,6 +79,10 @@
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\messipenal.jpg",
       "PackagePath": "staticwebassets\\images\\messipenal.jpg"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\pelota.png",
+      "PackagePath": "staticwebassets\\images\\pelota.png"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\stadium.jpg",

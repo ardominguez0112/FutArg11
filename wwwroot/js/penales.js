@@ -17,8 +17,15 @@ let celdaSeleccionada = null;
 // =====================
 async function crearSala() {
     const input = document.getElementById("txtNombreCrear");
+    const error = document.getElementById("errorNombreCrear");
     nombreUsuario = input.value.trim();
-    if (!nombreUsuario) { alert("Ingresa tu nombre"); return; }
+
+    if (!nombreUsuario) {
+        error.innerText = "Ingresa tu nombre";
+        error.style.display = "block";
+        return;
+    }
+    error.style.display = "none";
 
     salaActual = Math.random().toString(36).substring(2, 6).toUpperCase();
     owner = true;
@@ -35,19 +42,39 @@ async function crearSala() {
 async function unirseSala() {
     const inputNombre = document.getElementById("txtNombreUnirse");
     const inputCodigo = document.getElementById("txtCodigoUnirse");
+    const errorNombre = document.getElementById("errorNombreUnirse");
+    const errorCodigo = document.getElementById("errorCodigoUnirse");
+
     nombreUsuario = inputNombre.value.trim();
     salaActual = inputCodigo.value.trim().toUpperCase();
-    owner = false;
 
-    if (!nombreUsuario || !salaActual) { alert("Completa todos los datos"); return; }
+    let hasError = false;
+
+    if (!nombreUsuario) {
+        errorNombre.innerText = "Ingresa tu nombre";
+        errorNombre.style.display = "block";
+        hasError = true;
+    } else {
+        errorNombre.style.display = "none";
+    }
+
+    if (!salaActual) {
+        errorCodigo.innerText = "Ingresa el código de sala";
+        errorCodigo.style.display = "block";
+        hasError = true;
+    } else {
+        errorCodigo.style.display = "none";
+    }
+
+    if (hasError) return;
 
     await connection.invoke("UnirseSala", salaActual, nombreUsuario);
 
     document.getElementById("codigoSala").innerText = salaActual;
     document.getElementById("popupSala").style.display = "block";
-    document.getElementById("btnIniciar").style.display = "block"; // Mostrar aunque no sea owner
-    document.getElementById("btnIniciar").disabled = true; // Deshabilitar si no es owner
-    document.getElementById("btnIniciar").title = "Solo el líder puede iniciar la partida";
+    document.getElementById("btnIniciar").style.display = "block";
+    document.getElementById("btnIniciar").disabled = true;
+    document.getElementById("btnIniciar").tooltip = "Solo el líder puede iniciar la partida";
 }
 
 async function iniciarPartida() {
@@ -71,8 +98,8 @@ connection.on("ActualizarEquipos", (equipo1, arquero1, equipo2, arquero2) => {
 
     e1.innerHTML = "";
     e2.innerHTML = "";
-    equipo1.forEach(j => e1.innerHTML += `<li>${j} ${j === arquero1 ? "(Arquero)🧤" : ""}</li>`);
-    equipo2.forEach(j => e2.innerHTML += `<li>${j} ${j === arquero2 ? " (Arquero)🧤": ""}</li>`);
+    equipo1.forEach(j => e1.innerHTML += `<li>${j} ${j === arquero1 ? "🧤" : "👟"}</li>`);
+    equipo2.forEach(j => e2.innerHTML += `<li>${j} ${j === arquero2 ? "🧤" : "👟"}</li>`);
     a1.innerText = `Arquero: ${arquero1} 🧤`;
     a2.innerText = `Arquero: ${arquero2} 🧤`;
 });
@@ -89,31 +116,86 @@ connection.on("PartidaIniciada", () => {
 connection.on("NuevoTurno", (pateador, arquero, equipo) => {
     turnoActual = { pateador, arquero };
     const info = document.getElementById("turnoInfo");
+    const btnAccion = document.getElementById("btnAccionTurno");
+
     if (nombreUsuario === pateador) {
-        info.innerText = `¡Tu turno de patear! - Arquero: ${arquero} 🧤`;
+        info.innerText = `¡Tu turno de patear! - Arquero: ${arquero}`;
+        btnAccion.innerText = "Patear";
+        btnAccion.disabled = true; // hasta que seleccione celda
+        btnAccion.style.display = "inline-block";
     } else if (nombreUsuario === arquero) {
-        info.innerText = `¡Tu turno de atajar 🧤! - Pateador: ${pateador}`;
+        info.innerText = `¡Tu turno de atajar! - Pateador: ${pateador}`;
+        btnAccion.innerText = "Atajar";
+        btnAccion.disabled = true; // hasta que seleccione celda
+        btnAccion.style.display = "inline-block";
     } else {
-        info.innerText = `Turno: ${pateador} patea, ${arquero} ataja 🧤`;
+        info.innerText = `Turno: ${pateador} patea, ${arquero} ataja`;
+        btnAccion.style.display = "none";
     }
+
     actualizarGridEstado();
 });
 
-connection.on("ResultadoTurno", (pateador, arquero, gol, marcador) => {
-    alert(gol ? "¡Gol!" : "Atajado!");
+connection.on("ResultadoTurno", (pateador, arquero, gol, marcador, filaP, colP, filaA, colA) => {
     actualizarMarcador(marcador);
-    if (celdaSeleccionada !== null) {
-        const grid = document.getElementById("arcoGrid");
-        const botones = grid.querySelectorAll("button");
-        const btn = botones[celdaSeleccionada];
+    mostrarNotificacionTurno(gol ? "¡GOL!" : "Atajado!", gol);
 
+    const grid = document.getElementById("arcoGrid");
+    const botones = grid.querySelectorAll("button");
+
+    // Limpiar overlays previos
+    botones.forEach(btn => {
         btn.style.backgroundImage = "";
         btn.style.backgroundColor = "rgba(255,255,255,0.6)";
-        btn.style.outline = "none";
-        btn.disabled = false;
+        const overlays = btn.querySelectorAll(".overlayResultado");
+        overlays.forEach(o => o.remove());
+    });
 
-        celdaSeleccionada = null;
+    // Pateador
+    if (filaP != null && colP != null) {
+        const btnP = botones[filaP * 3 + colP];
+        btnP.style.backgroundColor = "rgba(0,200,0,0.4)"; // fondo verde
+        const overlayP = document.createElement("div");
+        overlayP.className = "overlayResultado";
+        overlayP.style.backgroundImage = "url('/images/pelota.png')";
+        overlayP.style.backgroundSize = "contain";
+        overlayP.style.backgroundRepeat = "no-repeat";
+        overlayP.style.backgroundPosition = "center";
+        overlayP.style.width = "100%";
+        overlayP.style.height = "100%";
+        overlayP.style.pointerEvents = "none";
+        overlayP.style.zIndex = 1;
+        btnP.appendChild(overlayP);
     }
+
+    // Arquero
+    if (filaA != null && colA != null) {
+        const btnA = botones[filaA * 3 + colA];
+        btnA.style.backgroundColor = "rgba(200,0,0,0.4)"; // fondo rojo
+        const overlayA = document.createElement("div");
+        overlayA.className = "overlayResultado";
+        overlayA.style.backgroundImage = "url('/images/guante.png')";
+        overlayA.style.backgroundSize = "contain";
+        overlayA.style.backgroundRepeat = "no-repeat";
+        overlayA.style.backgroundPosition = "center";
+        overlayA.style.width = "100%";
+        overlayA.style.height = "100%";
+        overlayA.style.pointerEvents = "none";
+        overlayA.style.zIndex = 2;
+        btnA.appendChild(overlayA);
+    }
+
+    // Limpiar celda seleccionada temporal
+    celdaSeleccionada = null;
+
+    // Quitar overlays cuando desaparece la notificación
+    setTimeout(() => {
+        botones.forEach(btn => {
+            const overlays = btn.querySelectorAll(".overlayResultado");
+            overlays.forEach(o => o.remove());
+            btn.style.backgroundColor = "rgba(255,255,255,0.6)";
+        });
+    }, 1500); // mismo tiempo que la notificación
 });
 
 connection.on("FinTanda", (marcador, ganador) => {
@@ -136,14 +218,25 @@ function mostrarResultado(ganador) {
     const divResultado = document.getElementById("resultadoTanda");
     const mensaje = document.getElementById("mensajeGanador");
     const btnRevancha = document.getElementById("btnRevancha");
+    const arcoGrid = document.getElementById("arcoGrid");
+    const turnoInfo = document.getElementById("turnoInfo");
+    const btnAccion = document.getElementById("btnAccionTurno"); // tu botón Patear/Atajar
 
+    // Ocultar arco, info del turno y botón de acción
+    arcoGrid.style.display = "none";
+    turnoInfo.style.display = "none";
+    btnAccion.style.display = "none";
+
+    // Mostrar mensaje de ganador
     mensaje.textContent = `🏆 Ganoooo el ${ganador}`;
     divResultado.style.display = "block";
 
+    // Botón revancha
     btnRevancha.style.display = "inline-block";
     btnRevancha.disabled = !owner;
-    btnRevancha.title = owner ? "" : "Solo el líder puede reiniciar la partida";
+    btnRevancha.tooltip = owner ? "" : "Solo el líder puede reiniciar la partida";
 
+    // Volver al lobby
     document.getElementById("btnVolverLobby").onclick = () => {
         window.location.href = "/Penales"; // ajustá la ruta si es distinta
     };
@@ -154,27 +247,29 @@ function mostrarResultado(ganador) {
     };
 }
 
+function mostrarNotificacionTurno(texto, gol) {
+    const div = document.getElementById("notificacionTurno");
+    div.innerText = texto;
+    div.style.backgroundColor = gol ? "rgba(0, 200, 0, 0.85)" : "rgba(200, 0, 0, 0.85)";
+    div.classList.add("mostrar");
+
+    // Desaparece después de 1.5s
+    setTimeout(() => {
+        div.classList.remove("mostrar");
+    }, 1500);
+}
+
 // =====================
 // Funciones de juego
 // =====================
 function generarGrid() {
     const grid = document.getElementById("arcoGrid");
     grid.innerHTML = "";
-    grid.style.gridTemplateColumns = `repeat(3, 8rem)`;
-    grid.style.gridTemplateRows = `repeat(3, 2.5rem)`;
-    grid.style.gap = `0.3rem`;
-    grid.style.justifyContent = "center";
-    grid.style.alignContent = "center";
+    grid.classList.add("arco-grid"); // que tome los estilos de arriba
 
     for (let r = 0; r < 3; r++) {
         for (let c = 0; c < 3; c++) {
             const btn = document.createElement("button");
-            btn.style.width = "8rem";
-            btn.style.height = "2.5rem";
-            btn.style.fontSize = "1.2rem";
-            btn.style.borderRadius = "0.5rem";
-            btn.style.cursor = "pointer";
-            btn.style.backgroundColor = "rgba(255,255,255,0.6)";
             btn.onclick = () => seleccionarCelda(r, c);
             grid.appendChild(btn);
         }
@@ -195,7 +290,7 @@ function seleccionarCelda(fila, col) {
     const index = fila * 3 + col;
     const botones = grid.querySelectorAll("button");
 
-    // Si había una celda previa, la limpio
+    // Limpiar selección anterior
     if (celdaSeleccionada !== null) {
         botones[celdaSeleccionada].style.backgroundImage = "";
         botones[celdaSeleccionada].style.backgroundColor = "rgba(255,255,255,0.6)";
@@ -203,7 +298,7 @@ function seleccionarCelda(fila, col) {
 
     celdaSeleccionada = index;
 
-    // Si soy pateador → pelota, si soy arquero → guantes
+    // Mostrar la selección temporal
     if (nombreUsuario === turnoActual.pateador) {
         botones[index].style.backgroundImage = "url('/images/pelota.png')";
     } else if (nombreUsuario === turnoActual.arquero) {
@@ -215,7 +310,9 @@ function seleccionarCelda(fila, col) {
     botones[index].style.backgroundPosition = "center";
     botones[index].style.backgroundColor = "transparent";
 
-    connection.invoke("SeleccionarCelda", salaActual, nombreUsuario, fila, col);
+    // Habilitar botón de acción
+    const btnAccion = document.getElementById("btnAccionTurno");
+    btnAccion.disabled = false;
 }
 
 function actualizarMarcador(marcador) {
@@ -267,6 +364,22 @@ function crearCasillaPenal() {
     div.innerText = ""; // vacío al inicio
     return div;
 }
+
+// =====================
+// Botón Patear/Atajar
+// =====================
+document.getElementById("btnAccionTurno").onclick = async () => {
+    if (celdaSeleccionada === null) return;
+
+    const fila = Math.floor(celdaSeleccionada / 3);
+    const col = celdaSeleccionada % 3;
+
+    await connection.invoke("SeleccionarCelda", salaActual, nombreUsuario, fila, col);
+
+    // Deshabilitar botón hasta próximo turno
+    document.getElementById("btnAccionTurno").disabled = true;
+};
+
 
 // =====================
 // Conexión

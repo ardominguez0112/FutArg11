@@ -3,87 +3,228 @@
 }
 
 <div class="container text-center mt-5">
-    <h2>⚽ CREA UNA SALA ⚽</h2>
+    <h2 class="fw-bold text-primary mb-4">⚽ CREA UNA SALA ⚽</h2>
 
     <!-- Crear sala -->
-    <div class="my-3">
-        <input type="text" id="txtNombreCrear" placeholder="Tu nombre" class="form-control mb-2" />
-        <button class="btn btn-primary" onclick="crearSala()">Crear Sala</button>
+    <div class="card shadow p-4 mx-auto mb-5" style="max-width: 400px; border-radius: 1rem;">
+        <span id="errorNombreCrear" class="error-message"></span>
+        <input type="text" id="txtNombreCrear" placeholder="Tu nombre" class="form-control mb-3 text-center" />
+        <button class="btn btn-success w-100 fw-bold" onclick="crearSala()">🚀 Crear Sala</button>
     </div>
-    <br />
-    <br />
 
-    <h2>⚽ O UNITE A UNA CON UN CÓDIGO ⚽</h2>
+    <h2 class="fw-bold text-secondary mb-4">⚽ O UNITE A UNA CON UN CÓDIGO ⚽</h2>
+
     <!-- Unirse a sala -->
-    <div class="my-3">
-        <input type="text" id="txtCodigoUnirse" placeholder="Código de sala" class="form-control mb-2" />
-        <input type="text" id="txtNombreUnirse" placeholder="Tu nombre" class="form-control mb-2" />
-        <button class="btn btn-secondary" onclick="unirseSala()">Unirse</button>
+    <div class="card shadow p-4 mx-auto" style="max-width: 400px; border-radius: 1rem;">
+        <span id="errorCodigoUnirse" class="error-message mb-1"></span>
+        <input type="text" id="txtCodigoUnirse" placeholder="Código de sala" class="form-control mb-3 text-center" />
+        <span id="errorNombreUnirse" class="error-message mb-1"></span>
+        <input type="text" id="txtNombreUnirse" placeholder="Tu nombre" class="form-control mb-3 text-center" />
+        <button class="btn btn-primary w-100 fw-bold" onclick="unirseSala()">🔑 Unirse</button>
     </div>
 </div>
 
 <!-- Modal Sala -->
-<div id="popupSala" class="modal" style="display:none; color:black; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.25); background-image:url('/images/stadium.jpg');
-            background-size:cover;
-            background-position:center;">
-    <div class="modal-dialog" style="max-width:600px; margin:auto; margin-top:5vh;">
-        <div class="modal-content p-4" style="border-radius:15px;">
+<div id="popupSala" class="modal" style="display:none; color:black; background: rgba(0,0,0,0.85);">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:600px;">
+        <div class="modal-content p-4 shadow-lg"
+             style="border-radius:20px; background-image:url('/images/cancha.jpg'); background-size:cover; background-position:center; color:white;">
 
-            <!-- Sección de equipos (desaparece al iniciar partida) -->
+            <!-- Sección de equipos -->
             <div id="seccionEquipos" class="text-center">
-                <h3>Código de sala: <span id="codigoSala"></span></h3>
-                <div class="row mt-3">
+                <h3 class="fw-bold">
+                    Código de sala: <span id="codigoSala" class="badge bg-light text-dark"></span>
+                </h3>
+                <div class="row mt-4">
                     <div class="col-md-6">
-                        <h4>Equipo 1</h4>
-                        <ul id="equipo1" class="list-group mb-2" style="color:black"></ul>
+                        <h4 class="text-danger">Equipo 1</h4>
+                        <ul id="equipo1" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                     <div class="col-md-6">
-                        <h4>Equipo 2</h4>
-                        <ul id="equipo2" class="list-group mb-2" style="color:black"></ul>
+                        <h4 class="text-info">Equipo 2</h4>
+                        <ul id="equipo2" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                 </div>
 
-                <button id="btnIniciar" class="btn btn-success mt-3" style="display:none;" onclick="iniciarPartida()">Iniciar Partida</button>
+                <!-- Botón centrado -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button id="btnIniciar" class="btn btn-success btn-lg fw-bold"
+                            style="display:none; min-width:200px;" onclick="iniciarPartida()">
+                        Iniciar Partida
+                    </button>
+                </div>
             </div>
 
-
-            <!-- Sección de juego 3x3 (invisible hasta iniciar partida) -->
+            <!-- Sección de juego -->
             <div id="seccionJuego" style="display:none; margin-top:20px;">
-                <h4 id="turnoInfo" style="margin-bottom:10px;"></h4>
-                <div id="arcoGrid" style="display:grid; grid-template-columns: repeat(3, 8rem); grid-template-rows: repeat(3, 2.5rem); grid-gap:0.3rem; justify-content:center; align-content:center; background-image:url('/images/arco2.png'); background-size:cover; background-position:center; padding:1rem; border-radius:10px;">
-                    <!-- Celdas 3x3 generadas dinámicamente desde JS -->
+                <h4 id="turnoInfo" class="mb-3 fw-bold text-center"></h4>
+
+                <div id="arcoGrid" class="arco-grid">
+                    <!-- Celdas 3x3 generadas dinámicamente -->
                 </div>
 
-                <!-- Marcador -->
-                <div id="marcador" style="display:flex; flex-direction:column; align-items:center; gap:0.5rem; margin:1rem 0; font-size:1rem;">
+                <!-- Resultado final -->
+                <div id="resultadoTanda" style="display:none; text-align:center; margin-top:15px;">
+                    <h3 id="mensajeGanador" class="mb-3"></h3>
+                    <button id="btnVolverLobby" class="btn btn-light me-2">Volver</button>
+                    <button id="btnRevancha" class="btn btn-primary fw-bold" style="display:none;">Revancha!</button>
+                </div>
 
-                    <div id="marcadorContainer1" style="display:flex; align-items:center; gap:0.5rem; min-height:2rem;">
-                        <span style="font-weight:bold; font-size:1rem;">Equipo 1:</span>
-                        <div id="marcadorEquipo1" style="display:flex; gap:0.5rem;"></div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button id="btnAccionTurno" class="btn btn-warning mt-3" style="display:none;">Patear</button>
+                </div>
+
+                <div id="notificacionTurno"
+                     style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            padding:1rem 2rem; font-size:2rem; font-weight:bold; color:white;
+            border-radius:15px; display:none; z-index:9999; text-align:center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+                </div>
+
+                <!-- Marcador con fondo y divisores -->
+                <div id="marcador" class="mt-4 p-3 rounded"
+                     style="background: rgba(0,0,0,0.8); border: 2px solid rgba(255,255,255,0.3);">
+                    <div id="marcadorContainer1"
+                         class="d-flex align-items-center justify-content-center gap-2 pb-2 border-bottom border-light">
+                        <span class="fw-bold text-danger">Equipo 1:</span>
+                        <div id="marcadorEquipo1" class="d-flex gap-2 flex-wrap"></div>
                     </div>
-
-                    <div id="marcadorContainer2" style="display:flex; align-items:center; gap:0.5rem; min-height:2rem;">
-                        <span style="font-weight:bold; font-size:1rem;">Equipo 2:</span>
-                        <div id="marcadorEquipo2" style="display:flex; gap:0.5rem;"></div>
+                    <div id="marcadorContainer2"
+                         class="d-flex align-items-center justify-content-center gap-2 pt-2">
+                        <span class="fw-bold text-info">Equipo 2:</span>
+                        <div id="marcadorEquipo2" class="d-flex gap-2 flex-wrap"></div>
                     </div>
-
                 </div>
             </div>
 
+            <div id="contador" class="mt-3 fs-5 fw-bold text-center"></div>
 
-            <div id="contador" class="mt-3" style="font-weight:bold;"></div>
-
-            <div id="resultadoTanda" style="display:none; text-align:center; margin-top:15px;">
-                <h3 id="mensajeGanador" style="margin-bottom:10px;"></h3>
-                <button id="btnVolverLobby" class="btn btn-secondary">Volver</button>
-                <button id="btnRevancha" class="btn btn-primary" style="display:none;">Revancha!</button>
-            </div>
+           
 
         </div>
     </div>
 </div>
 
 @section Scripts {
+    <style>
+
+
+        .error-message {
+            display: none;
+            font-size: 0.9rem;
+            color: red; 
+            margin-top: 2px; 
+            margin-bottom: 4px; 
+            display: block; 
+        }
+
+        /* Listas de equipos */
+        .equipo-list li {
+            background: rgba(0, 0, 0, 0.85);
+            margin: 2px 0;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+            .equipo-list li:hover {
+                transform: scale(1.03);
+                background: #000000d9;
+            }
+
+
+        #arcoGrid {
+            background-image: url('/images/arco2.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            padding: 0.5rem;
+        }
+        /* Grid del arco */
+        .arco-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 9rem);
+            grid-template-rows: repeat(3, 2.7rem);
+            gap: 0.5rem;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .overlayResultado {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* 100% de la celda */
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        .arco-grid button {
+            position: relative;
+            width: 9rem;
+            height: 2.7rem;
+            border-radius: 20%;
+            cursor: pointer;
+            background-color: rgba(255,255,255,0.6);
+            background-size: 40%; /* ajusta el tamaño de la pelota/guante */
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(0,0,0,0.2); /* opcional, para que se vea mejor */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+            .arco-grid button:hover {
+                background-color: rgba(255,255,255,0.8);
+            }
+
+
+        #marcador .d-flex {
+            gap: 0.4rem;
+        }
+
+        #marcadorEquipo1 div, #marcadorEquipo2 div {
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+
+        #notificacionTurno.mostrar {
+            display: block !important;
+            animation: pop 0.5s ease-out forwards;
+        }
+        /* Responsivo */
+        @@media (max-width: 576px) {
+            .arco-grid {
+                grid-template-columns: repeat(3, 6rem);
+                grid-template-rows: repeat(3, 2rem);
+                gap: 0.3rem;
+            }
+
+                .arco-grid button {
+                    width: 6rem;
+                    height: 2rem;
+                    background-size: 50%;
+                }
+
+            #btnIniciar {
+                font-size: 1rem;
+                min-width: 150px;
+                padding: 0.6rem 1rem;
+            }
+
+            #marcador {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="~/js/penales.js"></script>
 }

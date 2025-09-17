@@ -83,10 +83,20 @@ connection.onclose(() => {
 
 // Crear sala (owner)
 async function crearSala() {
-    if (!conexionLista) { alert("Esperando conexión al servidor..."); return; }
+    if (!conexionLista) {
+        document.getElementById("errorNombreCrear").innerText = "Esperando conexión al servidor...";
+        return;
+    }
 
     let nombre = document.getElementById("txtNombreCrear").value.trim();
-    if (!nombre) { alert("Ingresa tu nombre"); return; }
+    const errorSpan = document.getElementById("errorNombreCrear");
+
+    if (!nombre) {
+        errorSpan.innerText = "Ingresa tu nombre";
+        return;
+    } else {
+        errorSpan.innerText = ""; // limpiar mensaje
+    }
 
     let sala = Math.random().toString(36).substring(2, 6).toUpperCase();
     salaActual = sala;
@@ -100,13 +110,35 @@ async function crearSala() {
     document.getElementById("configuracionOwner").style.display = "block";
 }
 
-// Unirse a sala
 async function unirseSala() {
-    if (!conexionLista) { alert("Esperando conexión al servidor..."); return; }
+    if (!conexionLista) {
+        document.getElementById("errorCodigoUnirse").innerText = "Esperando conexión al servidor...";
+        return;
+    }
 
     let sala = document.getElementById("txtCodigoUnirse").value.trim();
     let nombre = document.getElementById("txtNombreUnirse").value.trim();
-    if (!sala || !nombre) { alert("Completa todos los datos"); return; }
+
+    const errorCodigo = document.getElementById("errorCodigoUnirse");
+    const errorNombre = document.getElementById("errorNombreUnirse");
+
+    let hayError = false;
+
+    if (!sala) {
+        errorCodigo.innerText = "Ingresa el código de sala";
+        hayError = true;
+    } else {
+        errorCodigo.innerText = "";
+    }
+
+    if (!nombre) {
+        errorNombre.innerText = "Ingresa tu nombre";
+        hayError = true;
+    } else {
+        errorNombre.innerText = "";
+    }
+
+    if (hayError) return;
 
     salaActual = sala;
     owner = false;
@@ -116,6 +148,7 @@ async function unirseSala() {
     // Mostrar popup
     document.getElementById("codigoSala").innerText = sala;
     document.getElementById("popupSala").style.display = "block";
+    document.getElementById("configuracionOwner").style.display = "none";
 }
 
 // Iniciar partida (solo owner)

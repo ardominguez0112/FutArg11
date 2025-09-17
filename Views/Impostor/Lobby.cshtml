@@ -3,17 +3,24 @@
 }
 
 <div class="container text-center mt-5">
-    <h2>CREA UNA SALA:</h2>
-    <div class="my-3">
-        <input type="text" id="txtNombreCrear" placeholder="Tu nombre" class="form-control mb-2" />
-        <button class="btn btn-primary" onclick="crearSala()">Crear Sala</button>
+    <h2 class="fw-bold text-primary mb-4">CREA UNA SALA</h2>
+
+    <!-- Crear sala -->
+    <div class="card shadow p-4 mx-auto mb-5" style="max-width:400px; border-radius:1rem;">
+        <span id="errorNombreCrear" class="error-message" style="display:block; color:red; font-size:0.9rem; margin-bottom:8px;"></span>
+        <input type="text" id="txtNombreCrear" placeholder="Tu nombre" class="form-control mb-3 text-center" />
+        <button class="btn btn-success w-100 fw-bold" onclick="crearSala()">🚀 Crear Sala</button>
     </div>
 
-    <h2>O UNITE A UNA CON UN CÓDIGO:</h2>
-    <div class="my-3">
-        <input type="text" id="txtCodigoUnirse" placeholder="Código de sala" class="form-control mb-2" />
-        <input type="text" id="txtNombreUnirse" placeholder="Tu nombre" class="form-control mb-2" />
-        <button class="btn btn-secondary" onclick="unirseSala()">Unirse</button>
+    <h2 class="fw-bold text-secondary mb-4">O UNITE A UNA CON UN CÓDIGO</h2>
+
+    <!-- Unirse a sala -->
+    <div class="card shadow p-4 mx-auto" style="max-width:400px; border-radius:1rem;">
+        <span id="errorCodigoUnirse" class="error-message" style="display:block; color:red; font-size:0.9rem; margin-bottom:4px;"></span>
+        <input type="text" id="txtCodigoUnirse" placeholder="Código de sala" class="form-control mb-3 text-center" />
+        <span id="errorNombreUnirse" class="error-message" style="display:block; color:red; font-size:0.9rem; margin-bottom:4px;"></span>
+        <input type="text" id="txtNombreUnirse" placeholder="Tu nombre" class="form-control mb-3 text-center" />
+        <button class="btn btn-primary w-100 fw-bold" onclick="unirseSala()">🔑 Unirse</button>
     </div>
 </div>
 
@@ -41,6 +48,17 @@
 </div>
 
 @section Scripts {
+
+    <style>
+        .error-message {
+            display: none;
+            font-size: 0.9rem;
+            color: red;
+            margin-top: 2px;
+            margin-bottom: 4px;
+            display: block;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="~/js/impostorLobby.js"></script>
 }

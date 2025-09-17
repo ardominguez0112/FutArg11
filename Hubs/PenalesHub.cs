@@ -157,7 +157,17 @@ public class PenalesHub : Hub
             string equipo = turno.Equipo == 1 ? "Equipo1" : "Equipo2";
             sala.Marcador[equipo].Add(gol ? "⚽" : "❌");
 
-            await Clients.Group(codigo).SendAsync("ResultadoTurno", turno.Pateador, turno.Arquero, gol, sala.Marcador);
+            await Clients.Group(codigo).SendAsync(
+                    "ResultadoTurno",
+                    turno.Pateador,
+                    turno.Arquero,
+                    gol,
+                    sala.Marcador,
+                    turno.PosicionPateador?.Item1,
+                    turno.PosicionPateador?.Item2,
+                    turno.PosicionArquero?.Item1, 
+                    turno.PosicionArquero?.Item2 
+                    );
 
             // En muerte súbita: esperar a que ambos equipos pateen para decidir
             if (sala.Marcador["Equipo1"].Count >= 5 && sala.Marcador["Equipo2"].Count >= 5)
