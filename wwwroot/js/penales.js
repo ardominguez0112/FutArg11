@@ -2,6 +2,7 @@
 // Variables globales
 // =====================
 let salaActual = "";
+let objetoSala = null;
 let owner = false;
 let nombreUsuario = "";
 let connection = new signalR.HubConnectionBuilder()
@@ -90,7 +91,7 @@ async function reiniciarSala() {
 // =====================
 // Conexión SignalR
 // =====================
-connection.on("ActualizarEquipos", (equipo1, arquero1, equipo2, arquero2) => {
+connection.on("ActualizarEquipos", (equipo1, arquero1, capitan1, equipo2, arquero2, capitan2) => {
     const e1 = document.getElementById("equipo1");
     const e2 = document.getElementById("equipo2");
     const a1 = document.getElementById("arqueroEquipo1");
@@ -98,10 +99,47 @@ connection.on("ActualizarEquipos", (equipo1, arquero1, equipo2, arquero2) => {
 
     e1.innerHTML = "";
     e2.innerHTML = "";
-    equipo1.forEach(j => e1.innerHTML += `<li>${j} ${j === arquero1 ? "🧤" : "👟"}</li>`);
-    equipo2.forEach(j => e2.innerHTML += `<li>${j} ${j === arquero2 ? "🧤" : "👟"}</li>`);
+
+    equipo1.forEach(j => {
+        const iconos = `${j === arquero1 ? "🧤" : ""}${j === capitan1 ? "[c]" : ""}`;
+        e1.innerHTML += `<li>${iconos} ${j}</li>`;
+    });
+
+    equipo2.forEach(j => {
+        const iconos = `${j === arquero2 ? "🧤" : ""}${j === capitan2 ? "[c]" : ""}`;
+        e2.innerHTML += `<li>${iconos} ${j}</li>`;
+    });
+
     a1.innerText = `Arquero: ${arquero1} 🧤`;
     a2.innerText = `Arquero: ${arquero2} 🧤`;
+});
+
+connection.on("SalaActualizada", (sala) => {
+    objetoSala = sala;
+    actualizarSelectoresCapitanes(sala);
+    if (sala.equipo1Seleccionado) {
+        document.querySelector("#fotoequipo1").innerHTML = `
+            <div class="text-center">
+                <img src="/images/equipos/${sala.nombreEquipo1}.png" style="height:40px;" class="me-2">
+            </div>`;
+    }
+    if (sala.equipo2Seleccionado) {
+        document.querySelector("#fotoequipo2").innerHTML = `
+            <div class="text-center">
+                <img src="/images/equipos/${sala.nombreEquipo2}.png" style="height:40px;" class="me-2">
+            </div>`;
+    }
+
+    actualizarEstadoBotonIniciar(sala);
+});
+
+connection.on("EquipoSeleccionado", (equipoNumero, nombreEquipo) => {
+    // Mostrar el nombre y escudo
+    let contenedor = document.querySelector(`#fotoequipo${equipoNumero}`);
+    contenedor.innerHTML = `
+        <div class="text-center">
+            <img src="/images/equipos/${nombreEquipo}.png" style="height:40px;" class="me-2">
+        </div>`;
 });
 
 connection.on("PartidaIniciada", () => {
@@ -110,7 +148,7 @@ connection.on("PartidaIniciada", () => {
     // Mostrar seccion de juego
     document.getElementById("seccionJuego").style.display = "block";
     generarGrid();
-    inicializarMarcador();
+    inicializarMarcador(objetoSala);
 });
 
 connection.on("NuevoTurno", (pateador, arquero, equipo) => {
@@ -137,7 +175,7 @@ connection.on("NuevoTurno", (pateador, arquero, equipo) => {
 });
 
 connection.on("ResultadoTurno", (pateador, arquero, gol, marcador, filaP, colP, filaA, colA) => {
-    actualizarMarcador(marcador);
+    actualizarMarcador(marcador, objetoSala);
     mostrarNotificacionTurno(gol ? "¡GOL!" : "Atajado!", gol);
 
     const grid = document.getElementById("arcoGrid");
@@ -199,7 +237,7 @@ connection.on("ResultadoTurno", (pateador, arquero, gol, marcador, filaP, colP, 
 });
 
 connection.on("FinTanda", (marcador, ganador) => {
-    actualizarMarcador(marcador);
+    actualizarMarcador(marcador, objetoSala);
     mostrarResultado(ganador);
 });
 
@@ -227,8 +265,16 @@ function mostrarResultado(ganador) {
     turnoInfo.style.display = "none";
     btnAccion.style.display = "none";
 
-    // Mostrar mensaje de ganador
-    mensaje.textContent = `🏆 Ganoooo el ${ganador}`;
+    // Mostrar imagen del equipo ganador
+    let nombreEquipoGanador = ganador === "Equipo 1" ? objetoSala.nombreEquipo1 : objetoSala.nombreEquipo2;
+
+    mensaje.innerHTML = `
+  <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+    <img src="/images/copa.png" style="height:3rem;" class="align-middle">
+    <img src="/images/equipos/${nombreEquipoGanador}.png" style="height:3rem;" class="align-middle">
+  </span>
+`;
+
     divResultado.style.display = "block";
 
     // Botón revancha
@@ -315,9 +361,15 @@ function seleccionarCelda(fila, col) {
     btnAccion.disabled = false;
 }
 
-function actualizarMarcador(marcador) {
+function actualizarMarcador(marcador, sala) {
     const eq1 = document.getElementById("marcadorEquipo1");
     const eq2 = document.getElementById("marcadorEquipo2");
+
+    // Reemplazar texto "Equipo 1" y "Equipo 2" por imagen
+    const cont1 = eq1.previousElementSibling;
+    const cont2 = eq2.previousElementSibling;
+    cont1.innerHTML = `<img src="/images/equipos/${sala.nombreEquipo1}.png" style="height:24px;">`;
+    cont2.innerHTML = `<img src="/images/equipos/${sala.nombreEquipo2}.png" style="height:24px;">`;
 
     // Si hay más de 5 tiros (muerte súbita), agregar casillas extra
     while (eq1.children.length < marcador.Equipo1.length) {
@@ -332,12 +384,18 @@ function actualizarMarcador(marcador) {
     marcador.Equipo2.forEach((valor, i) => eq2.children[i].innerText = valor);
 }
 
-function inicializarMarcador() {
+function inicializarMarcador(sala) {
     const eq1 = document.getElementById("marcadorEquipo1");
     const eq2 = document.getElementById("marcadorEquipo2");
 
     eq1.innerHTML = "";
     eq2.innerHTML = "";
+
+    // Reemplazar texto "Equipo 1" y "Equipo 2" por imagen
+    const cont1 = eq1.previousElementSibling;
+    const cont2 = eq2.previousElementSibling;
+    cont1.innerHTML = `<img src="/images/equipos/${sala.nombreEquipo1}.png" style="height:24px;">`;
+    cont2.innerHTML = `<img src="/images/equipos/${sala.nombreEquipo2}.png" style="height:24px;">`;
 
     // Empieza con 5 casillas cada equipo
     for (let i = 0; i < 5; i++) {
@@ -363,6 +421,92 @@ function crearCasillaPenal() {
     div.style.transition = "transform 0.2s, background-color 0.3s";
     div.innerText = ""; // vacío al inicio
     return div;
+}
+
+
+async function seleccionarEquipo(equipoNumero) {
+    const ddl = document.getElementById(`ddlEquipo${equipoNumero}`);
+    const equipo = ddl.value;
+
+    if (!equipo) {
+        alert("Elegí un equipo antes de confirmar.");
+        return;
+    }
+
+    await connection.invoke("SeleccionarEquipo", salaActual, equipoNumero, equipo);
+}
+
+function actualizarSelectoresCapitanes(sala) {
+    const ddl1 = document.getElementById("ddlEquipo1");
+    const ddl2 = document.getElementById("ddlEquipo2");
+    const btn1 = document.querySelector("#seleccionEquipo1 button");
+    const btn2 = document.querySelector("#seleccionEquipo2 button");
+
+    // Mostrar equipos ya seleccionados
+    if (sala.equipo1Seleccionado) {
+        ddl1.value = sala.nombreEquipo1;
+        btn1.innerText = "Equipo confirmado";
+        ddl1.disabled = true;
+        btn1.disabled = true;
+    }
+    if (sala.equipo2Seleccionado) {
+        ddl2.value = sala.nombreEquipo2;
+        btn2.innerText = "Equipo confirmado";
+        ddl2.disabled = true;
+        btn2.disabled = true;
+    }
+
+    const esCapitanEquipo1 = nombreUsuario === sala.owner;
+    const esCapitanEquipo2 = nombreUsuario === sala.capitanEquipo2;
+
+    // Equipo 1
+    if (!esCapitanEquipo1 && !sala.equipo1Seleccionado) {
+        ddl1.disabled = true;
+        btn1.disabled = true;
+        btn1.innerText = "Capitán eligiendo equipo...";
+    } else if (esCapitanEquipo1 && !sala.equipo1Seleccionado) {
+        ddl1.disabled = false;
+        btn1.disabled = false;
+        btn1.innerText = "Confirmar";
+    }
+
+    // Equipo 2
+    if (!esCapitanEquipo2 && !sala.equipo2Seleccionado) {
+        ddl2.disabled = true;
+        btn2.disabled = true;
+        btn2.innerText = "Capitán eligiendo equipo...";
+    } else if (esCapitanEquipo2 && !sala.equipo2Seleccionado) {
+        ddl2.disabled = false;
+        btn2.disabled = false;
+        btn2.innerText = "Confirmar";
+    }
+}
+
+function actualizarEstadoBotonIniciar(sala) {
+    const btnIniciar = document.getElementById("btnIniciar");
+    let mensaje = document.getElementById("mensajeEsperandoEquipos");
+
+    if (!mensaje) {
+        mensaje = document.createElement("span");
+        mensaje.id = "mensajeEsperandoEquipos";
+        mensaje.style.color = "red";
+        mensaje.style.display = "block"; 
+        mensaje.style.marginTop = "0.5rem";
+        btnIniciar.parentNode.appendChild(mensaje);
+    }
+
+    if (owner) {
+        if (sala.equipo1Seleccionado && sala.equipo2Seleccionado) {
+            btnIniciar.disabled = false;
+            mensaje.innerText = "";
+        } else {
+            btnIniciar.disabled = true;
+            mensaje.innerText = "Esperando confirmación de equipos";
+        }
+    } else {
+        btnIniciar.disabled = true;
+        mensaje.innerText = "Solo el lider puede iniciar la partida"; // otros jugadores no ven mensaje
+    }
 }
 
 // =====================

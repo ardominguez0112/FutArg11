@@ -45,8 +45,48 @@
       "PackagePath": "staticwebassets\\images\\cancha.jpg"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\copa.png",
+      "PackagePath": "staticwebassets\\images\\copa.png"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\diego10.jpg",
       "PackagePath": "staticwebassets\\images\\diego10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\atleti.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\atleti.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\barcelona.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\barcelona.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\bayern.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\bayern.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\boca.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\boca.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\city.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\city.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\liverpool.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\liverpool.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\madrid.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\madrid.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\river.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\river.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\equipos\\united.png",
+      "PackagePath": "staticwebassets\\images\\equipos\\united.png"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\futarggrid.jpeg",

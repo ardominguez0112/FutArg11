@@ -21,6 +21,7 @@ public class PenalesHub : Hub
 
         await Groups.AddToGroupAsync(Context.ConnectionId, codigo);
         await EnviarEquipos(codigo);
+        await Clients.Group(codigo).SendAsync("SalaActualizada", salas[codigo]);
     }
 
     // Unirse a sala
@@ -35,20 +36,26 @@ public class PenalesHub : Hub
         else
             sala.Equipo2.Add(nombre);
 
+        // Asignar capitán del equipo 2 si es el primer jugador
+        if (sala.Equipo2.Count == 1)
+            sala.CapitanEquipo2 = nombre;
+
         // Reasignar arqueros aleatorios
         if (sala.Equipo1.Count > 0) sala.ArqueroEquipo1 = sala.Equipo1[rnd.Next(sala.Equipo1.Count)];
         if (sala.Equipo2.Count > 0) sala.ArqueroEquipo2 = sala.Equipo2[rnd.Next(sala.Equipo2.Count)];
 
         await Groups.AddToGroupAsync(Context.ConnectionId, codigo);
         await EnviarEquipos(codigo);
+
+        await Clients.Group(codigo).SendAsync("SalaActualizada", sala);
     }
 
     private async Task EnviarEquipos(string codigo)
     {
         var sala = salas[codigo];
         await Clients.Group(codigo).SendAsync("ActualizarEquipos",
-            sala.Equipo1, sala.ArqueroEquipo1,
-            sala.Equipo2, sala.ArqueroEquipo2);
+            sala.Equipo1, sala.ArqueroEquipo1, sala.Owner,
+            sala.Equipo2, sala.ArqueroEquipo2, sala.CapitanEquipo2);
     }
 
     // Iniciar partida
@@ -221,18 +228,42 @@ public class PenalesHub : Hub
         // Mandar a todos a la vista de equipos
         await Clients.Group(codigo).SendAsync("VolverAlLobby");
     }
+
+    public async Task SeleccionarEquipo(string sala, int equipoNumero, string nombreEquipo)
+    {
+        if (salas.TryGetValue(sala, out var salaObj))
+        {
+            if (equipoNumero == 1 && nombreEquipo != null && nombreEquipo != "" && !salaObj.Equipo1Seleccionado)
+            {
+                salaObj.NombreEquipo1 = nombreEquipo;
+            }
+            else if (equipoNumero == 2 && nombreEquipo != null && nombreEquipo != "" && !salaObj.Equipo2Seleccionado)
+            {
+                salaObj.NombreEquipo2 = nombreEquipo;
+            }
+
+            // Avisar a todos en la sala que se eligió un equipo
+            await Clients.Group(sala).SendAsync("EquipoSeleccionado", equipoNumero, nombreEquipo);
+            await Clients.Group(sala).SendAsync("SalaActualizada", salaObj);
+        }
+    }
 }
 
 public class SalaPenales
 {
     public string Owner { get; set; }
+    public string CapitanEquipo2 { get; set; } // Primer jugador que entra a equipo 2
     public List<string> Equipo1 { get; set; } = new();
     public List<string> Equipo2 { get; set; } = new();
+    public string NombreEquipo1 { get; set; }
+    public string NombreEquipo2 { get; set; }
     public string ArqueroEquipo1 { get; set; }
     public string ArqueroEquipo2 { get; set; }
     public Queue<Turno> Tanda { get; set; }
     public Turno TurnoActual { get; set; }
     public Dictionary<string, List<string>> Marcador { get; set; }
+    public bool Equipo1Seleccionado => !string.IsNullOrEmpty(NombreEquipo1);
+    public bool Equipo2Seleccionado => !string.IsNullOrEmpty(NombreEquipo2);
 }
 
 public class Turno

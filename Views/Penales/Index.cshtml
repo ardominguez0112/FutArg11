@@ -35,19 +35,57 @@
                 <h3 class="fw-bold">
                     Código de sala: <span id="codigoSala" class="badge bg-light text-dark"></span>
                 </h3>
+
+
+                <div class="row mt-4">
+                    <div id="seleccionEquipo1" class="mt-3 col-md-6">
+                        <label class="fw-bold">Selecciona tu equipo</label>
+                        <select id="ddlEquipo1" class="form-select">
+                            <option value="">-- Elegí un equipo --</option>
+                            <option value="river">River</option>
+                            <option value="boca">Boca</option>
+                            <option value="liverpool">Liverpool</option>
+                            <option value="madrid">Real Madrid</option>
+                            <option value="barcelona">Barcelona</option>
+                            <option value="atleti">Atlético Madrid</option>
+                            <option value="bayern">Bayern Munich</option>
+                            <option value="city">Man. City</option>
+                            <option value="united">Man. United</option>
+                        </select>
+                        <button class="btn btn-success mt-2 w-100" onclick="seleccionarEquipo(1)">Confirmar</button>
+                    </div>
+                    <div id="seleccionEquipo2" class="mt-3 col-md-6">
+                        <label class="fw-bold">Selecciona tu equipo</label>
+                        <select id="ddlEquipo2" class="form-select">
+                            <option value="">-- Elegí un equipo --</option>
+                            <option value="river">River</option>
+                            <option value="boca">Boca</option>
+                            <option value="liverpool">Liverpool</option>
+                            <option value="madrid">Real Madrid</option>
+                            <option value="barcelona">Barcelona</option>
+                            <option value="atleti">Atlético Madrid</option>
+                            <option value="bayern">Bayern Munich</option>
+                            <option value="city">Man. City</option>
+                            <option value="united">Man. United</option>
+                        </select>
+                        <button class="btn btn-success mt-2 w-100" onclick="seleccionarEquipo(2)">Confirmar</button>
+                    </div>
+                </div>
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <h4 class="text-danger">Equipo 1</h4>
+                        <h4 id="fotoequipo1" class="text-danger">Equipo 1</h4>
+                        
                         <ul id="equipo1" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                     <div class="col-md-6">
-                        <h4 class="text-info">Equipo 2</h4>
+                        <h4 id="fotoequipo2" class="text-info">Equipo 2</h4>
+                        
                         <ul id="equipo2" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                 </div>
 
                 <!-- Botón centrado -->
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-center flex-column mt-4">
                     <button id="btnIniciar" class="btn btn-success btn-lg fw-bold"
                             style="display:none; min-width:200px;" onclick="iniciarPartida()">
                         Iniciar Partida
