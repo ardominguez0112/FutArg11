@@ -39,9 +39,9 @@
 
                 <div class="row mt-4">
                     <div id="seleccionEquipo1" class="mt-3 col-md-6">
-                        <label class="fw-bold">Selecciona tu equipo</label>
-                        <select id="ddlEquipo1" class="form-select">
-                            <option value="">-- Elegí un equipo --</option>
+                        <label class="fw-bold">Selección de equipo 1</label>
+                        <select id="ddlEquipo1" class="form-select text-center">
+                            <option value="">-</option>
                             <option value="river">River</option>
                             <option value="boca">Boca</option>
                             <option value="liverpool">Liverpool</option>
@@ -55,9 +55,9 @@
                         <button class="btn btn-success mt-2 w-100" onclick="seleccionarEquipo(1)">Confirmar</button>
                     </div>
                     <div id="seleccionEquipo2" class="mt-3 col-md-6">
-                        <label class="fw-bold">Selecciona tu equipo</label>
-                        <select id="ddlEquipo2" class="form-select">
-                            <option value="">-- Elegí un equipo --</option>
+                        <label class="fw-bold">Selección de equipo 2</label>
+                        <select id="ddlEquipo2" class="form-select text-center">
+                            <option value="">-</option>
                             <option value="river">River</option>
                             <option value="boca">Boca</option>
                             <option value="liverpool">Liverpool</option>
@@ -73,11 +73,13 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-6">
+                        <br />
                         <h4 id="fotoequipo1" class="text-danger">Equipo 1</h4>
                         
                         <ul id="equipo1" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                     <div class="col-md-6">
+                        <br />
                         <h4 id="fotoequipo2" class="text-info">Equipo 2</h4>
                         
                         <ul id="equipo2" class="list-group list-group-flush equipo-list"></ul>
@@ -105,7 +107,7 @@
                 <div id="resultadoTanda" style="display:none; text-align:center; margin-top:15px;">
                     <h3 id="mensajeGanador" class="mb-3"></h3>
                     <button id="btnVolverLobby" class="btn btn-light me-2">Volver</button>
-                    <button id="btnRevancha" class="btn btn-primary fw-bold" style="display:none;">Revancha!</button>
+                    @* <button id="btnRevancha" class="btn btn-primary fw-bold" style="display:none;">Revancha!</button> *@
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">

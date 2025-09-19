@@ -110,7 +110,7 @@ public class PenalesHub : Hub
         int tiros2 = sala.Marcador["Equipo2"].Count;
 
         // Definición anticipada en los primeros 5 tiros
-        if (tiros1 < 5 && tiros2 < 5)
+        if (tiros1 < 5 || tiros2 < 5)
         {
             int restantes1 = 5 - tiros1;
             int restantes2 = 5 - tiros2;
@@ -172,9 +172,25 @@ public class PenalesHub : Hub
                     sala.Marcador,
                     turno.PosicionPateador?.Item1,
                     turno.PosicionPateador?.Item2,
-                    turno.PosicionArquero?.Item1, 
-                    turno.PosicionArquero?.Item2 
+                    turno.PosicionArquero?.Item1,
+                    turno.PosicionArquero?.Item2
                     );
+
+            // Chequeo de definición anticipada SIEMPRE, no solo en NextTurn
+            int goles1 = sala.Marcador["Equipo1"].Count(x => x == "⚽");
+            int goles2 = sala.Marcador["Equipo2"].Count(x => x == "⚽");
+            int tiros1 = sala.Marcador["Equipo1"].Count;
+            int tiros2 = sala.Marcador["Equipo2"].Count;
+            int restantes1 = 5 - tiros1;
+            int restantes2 = 5 - tiros2;
+
+            // Si ya no hay chances matemáticas de empatar
+            if ((goles1 > goles2 + restantes2) || (goles2 > goles1 + restantes1))
+            {
+                string ganador = goles1 > goles2 ? "Equipo 1" : "Equipo 2";
+                await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
+                return;
+            }
 
             // En muerte súbita: esperar a que ambos equipos pateen para decidir
             if (sala.Marcador["Equipo1"].Count >= 5 && sala.Marcador["Equipo2"].Count >= 5)
@@ -184,11 +200,11 @@ public class PenalesHub : Hub
 
                 if (parCompleto)
                 {
-                    int goles1 = sala.Marcador["Equipo1"].Count(x => x == "⚽");
-                    int goles2 = sala.Marcador["Equipo2"].Count(x => x == "⚽");
-                    if (goles1 != goles2)
+                    int golesde1 = sala.Marcador["Equipo1"].Count(x => x == "⚽");
+                    int golesde2 = sala.Marcador["Equipo2"].Count(x => x == "⚽");
+                    if (golesde1 != golesde2)
                     {
-                        string ganador = goles1 > goles2 ? "Equipo 1" : "Equipo 2";
+                        string ganador = golesde1 > golesde2 ? "Equipo 1" : "Equipo 2";
 
                         await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
                         return;
@@ -206,6 +222,10 @@ public class PenalesHub : Hub
         if (!salas.ContainsKey(codigo)) return;
         var sala = salas[codigo];
 
+        // Resetear nombres de equipo (para que los selects vuelvan a estar disponibles)
+        sala.NombreEquipo1 = null;
+        sala.NombreEquipo2 = null;
+
         // Reasignar arqueros aleatorios
         var rnd = new Random();
         if (sala.Equipo1.Count > 0)
@@ -213,7 +233,7 @@ public class PenalesHub : Hub
         if (sala.Equipo2.Count > 0)
             sala.ArqueroEquipo2 = sala.Equipo2[rnd.Next(sala.Equipo2.Count)];
 
-        // Resetear marcador y tanda
+        // Resetear marcador, tanda y turno actual
         sala.Marcador = new Dictionary<string, List<string>>
     {
         { "Equipo1", new List<string>() },
@@ -225,8 +245,8 @@ public class PenalesHub : Hub
         // Enviar equipos actualizados a todos
         await EnviarEquipos(codigo);
 
-        // Mandar a todos a la vista de equipos
-        await Clients.Group(codigo).SendAsync("VolverAlLobby");
+        // Mandar a todos a la vista de equipos (Volver al lobby)
+        await Clients.Group(codigo).SendAsync("VolverAlLobby", sala.Equipo1, sala.ArqueroEquipo1, sala.Equipo2, sala.ArqueroEquipo2);
     }
 
     public async Task SeleccionarEquipo(string sala, int equipoNumero, string nombreEquipo)

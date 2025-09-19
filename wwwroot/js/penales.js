@@ -80,11 +80,13 @@ async function unirseSala() {
 
 async function iniciarPartida() {
     if (!salaActual) return;
+    await ensureConnection();
     await connection.invoke("IniciarPartida", salaActual);
 }
 
 async function reiniciarSala() {
     if (!salaActual) return;
+    await ensureConnection();
     await connection.invoke("ReiniciarSala", salaActual);
 }
 
@@ -241,12 +243,47 @@ connection.on("FinTanda", (marcador, ganador) => {
     mostrarResultado(ganador);
 });
 
-connection.on("VolverAlLobby", () => {
+connection.on("VolverAlLobby", (equipo1, arquero1, equipo2, arquero2) => {
+    // Ocultar sección de juego
     document.getElementById("resultadoTanda").style.display = "none";
     document.getElementById("seccionJuego").style.display = "none";
 
+    // Mostrar sección de selección de equipos
     document.getElementById("seccionEquipos").style.display = "block";
+
+    // Resetear selects y botones
+    const ddl1 = document.getElementById("ddlEquipo1");
+    const ddl2 = document.getElementById("ddlEquipo2");
+    const btn1 = document.querySelector("#seleccionEquipo1 button");
+    const btn2 = document.querySelector("#seleccionEquipo2 button");
+
+    ddl1.disabled = false;
+    ddl2.disabled = false;
+    ddl1.value = "";
+    ddl2.value = "";
+    btn1.disabled = false;
+    btn2.disabled = false;
+    btn1.innerText = "Confirmar";
+    btn2.innerText = "Confirmar";
+
+    // Resetear fotos
+    document.querySelector("#fotoequipo1").innerHTML = "";
+    document.querySelector("#fotoequipo2").innerHTML = "";
+
+    // Mostrar botón iniciar solo si sos owner
     document.getElementById("btnIniciar").style.display = owner ? "block" : "none";
+
+    // Resetear objetoSala con jugadores y arqueros
+    objetoSala = {
+        Equipo1: equipo1,
+        Equipo2: equipo2,
+        ArqueroEquipo1: arquero1,
+        ArqueroEquipo2: arquero2,
+        nombreEquipo1: null,
+        nombreEquipo2: null,
+        equipo1Seleccionado: false,
+        equipo2Seleccionado: false
+    };
 });
 
 // =====================
@@ -278,9 +315,9 @@ function mostrarResultado(ganador) {
     divResultado.style.display = "block";
 
     // Botón revancha
-    btnRevancha.style.display = "inline-block";
-    btnRevancha.disabled = !owner;
-    btnRevancha.tooltip = owner ? "" : "Solo el líder puede reiniciar la partida";
+    //btnRevancha.style.display = "inline-block";
+    //btnRevancha.disabled = !owner;
+    //btnRevancha.tooltip = owner ? "" : "Solo el líder puede reiniciar la partida";
 
     // Volver al lobby
     document.getElementById("btnVolverLobby").onclick = () => {
@@ -432,7 +469,7 @@ async function seleccionarEquipo(equipoNumero) {
         alert("Elegí un equipo antes de confirmar.");
         return;
     }
-
+    await ensureConnection();
     await connection.invoke("SeleccionarEquipo", salaActual, equipoNumero, equipo);
 }
 
@@ -531,3 +568,15 @@ document.getElementById("btnAccionTurno").onclick = async () => {
 connection.start()
     .then(() => console.log("Conectado al hub"))
     .catch(err => console.error(err));
+
+async function ensureConnection() {
+    if (connection.state !== signalR.HubConnectionState.Connected) {
+        try {
+            await connection.start();
+            console.log("Re-conectado al hub");
+        } catch (err) {
+            console.error("Error reconectando al hub:", err);
+            alert("Error de conexión, recarga la página.");
+        }
+    }
+}
