@@ -176,42 +176,42 @@ public class PenalesHub : Hub
                     turno.PosicionArquero?.Item2
                     );
 
-            // Chequeo de definición anticipada SIEMPRE, no solo en NextTurn
+            // Recalcular goles y tiros
             int goles1 = sala.Marcador["Equipo1"].Count(x => x == "⚽");
             int goles2 = sala.Marcador["Equipo2"].Count(x => x == "⚽");
             int tiros1 = sala.Marcador["Equipo1"].Count;
             int tiros2 = sala.Marcador["Equipo2"].Count;
-            int restantes1 = 5 - tiros1;
-            int restantes2 = 5 - tiros2;
 
-            // Si ya no hay chances matemáticas de empatar
-            if ((goles1 > goles2 + restantes2) || (goles2 > goles1 + restantes1))
-            {
-                string ganador = goles1 > goles2 ? "Equipo 1" : "Equipo 2";
-                await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
-                return;
-            }
+            bool enMuerteSubita = tiros1 > 5 || tiros2 > 5;
 
-            // En muerte súbita: esperar a que ambos equipos pateen para decidir
-            if (sala.Marcador["Equipo1"].Count >= 5 && sala.Marcador["Equipo2"].Count >= 5)
+            if (enMuerteSubita)
             {
+                // Cada "par" son dos tiros: uno por cada equipo
                 int tirosTotales = sala.Marcador["Equipo1"].Count + sala.Marcador["Equipo2"].Count;
-                bool parCompleto = tirosTotales % 2 == 0; // cada par tiene 2 tiros
+                bool parCompleto = tirosTotales % 2 == 0; // solo evaluar al completar par
 
-                if (parCompleto)
+                if (parCompleto && goles1 != goles2)
                 {
-                    int golesde1 = sala.Marcador["Equipo1"].Count(x => x == "⚽");
-                    int golesde2 = sala.Marcador["Equipo2"].Count(x => x == "⚽");
-                    if (golesde1 != golesde2)
-                    {
-                        string ganador = golesde1 > golesde2 ? "Equipo 1" : "Equipo 2";
+                    string ganador = goles1 > goles2 ? "Equipo 1" : "Equipo 2";
+                    await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
+                    return;
+                }
+            }
+            else
+            {
+                // Lógica normal de definición anticipada
+                int restantes1 = 5 - tiros1;
+                int restantes2 = 5 - tiros2;
 
-                        await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
-                        return;
-                    }
+                if ((goles1 > goles2 + restantes2) || (goles2 > goles1 + restantes1))
+                {
+                    string ganador = goles1 > goles2 ? "Equipo 1" : "Equipo 2";
+                    await Clients.Group(codigo).SendAsync("FinTanda", sala.Marcador, ganador);
+                    return;
                 }
             }
 
+            // Esperar un momento antes del siguiente turno
             await Task.Delay(1000);
             await NextTurn(codigo);
         }
