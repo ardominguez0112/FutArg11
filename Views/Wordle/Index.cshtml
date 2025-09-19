@@ -32,9 +32,9 @@
                     }
                 </div>
             }
-            <input id="hidden-input" type="text" autocomplete="off" autocorrect="off"
-                   style="opacity:0; width:1px; height:1px; border:none; padding:0; margin:0;" />
         </div>
+
+        <div id="virtual-keyboard"></div>
 
         <div id="end-game-buttons" style="display:none;" class="mb-3">
             <h3 id="end-message" class="mb-3"></h3>
@@ -42,7 +42,6 @@
             <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
         </div>
 
-        <button id="submit-btn" class="btn btn-primary" disabled>Enter</button>
     </div>
 </div>
 
@@ -89,10 +88,39 @@
                 background: transparent;
             }
 
-        #submit-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
+        #virtual-keyboard {
+            max-width: 350px; 
+            margin: 0 auto; 
+            justify-content: center; 
+            display: flex;
+            flex-wrap: wrap;
         }
+
+        .vk-btn {
+            width: 35px;
+            height: 45px;
+            margin: 1px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 1px solid #4dc3ff;
+            background-color: #00111d;
+            color: #e6f0fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+            .vk-btn:hover {
+                background-color: #004080;
+                border-color: #66d0ff;
+                transform: scale(1.1);
+            }
+
+            .vk-btn.special {
+                width: 60px;
+                font-size: 0.9rem;
+            }
     </style>
 }
 
@@ -106,71 +134,132 @@
         let currentRow = 0;
         let currentCol = 0;
 
-        const submitBtn = document.getElementById('submit-btn');
         const endButtons = document.getElementById('end-game-buttons');
         const endMessage = document.getElementById('end-message');
         const restartBtn = document.getElementById('restart-btn');
         const cancelBtn = document.getElementById('cancel-btn');
-        const hiddenInput = document.getElementById('hidden-input');
         const board = document.getElementById('wordle-board');
-
-        function focusHiddenInput() { setTimeout(() => hiddenInput.focus(), 50); }
-        focusHiddenInput();
-        board.addEventListener('click', focusHiddenInput);
+        const vkContainer = document.getElementById('virtual-keyboard');
 
         function getCell(row, col) { return board.querySelector(`.wordle-cell[data-row="${row}"][data-col="${col}"]`); }
         function setCell(row, col, letter) { const cell = getCell(row, col); if (!cell) return; cell.textContent = letter; cell.classList.remove('correct', 'present', 'absent'); }
-        function updateSubmitButtonState() { submitBtn.disabled = currentCol !== maxCols; }
 
-        hiddenInput.addEventListener('input', (e) => {
-            const val = e.target.value.toUpperCase();
-            const ch = val.slice(-1);
-            if (/^[A-Z]$/.test(ch) && currentCol < maxCols) { setCell(currentRow, currentCol, ch); currentCol++; updateSubmitButtonState(); }
-            e.target.value = "";
+        // Actualizar estado de fila completa
+        function updateRowComplete() { return currentCol === maxCols; }
+
+        // Crear teclado virtual
+        const keysRows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+        keysRows.forEach(row => {
+            const divRow = document.createElement('div');
+            divRow.classList.add('d-flex', 'justify-content-center', 'mb-1');
+            row.split('').forEach(ch => {
+                const btn = document.createElement('button');
+                btn.className = 'vk-btn';
+                btn.textContent = ch;
+                btn.addEventListener('click', () => handleKey(ch));
+                divRow.appendChild(btn);
+            });
+            vkContainer.appendChild(divRow);
         });
 
-        hiddenInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace') { if (currentCol > 0) { currentCol--; setCell(currentRow, currentCol, ""); updateSubmitButtonState(); } e.preventDefault(); }
-            else if (e.key === 'Enter') { if (currentCol === maxCols) submitWord(); e.preventDefault(); }
-        });
+        // Fila de Backspace + Enter
+        const divSpecial = document.createElement('div');
+        divSpecial.classList.add('d-flex', 'justify-content-center', 'mb-1');
+        const backBtn = document.createElement('button');
+        backBtn.className = 'vk-btn special';
+        backBtn.textContent = 'Back';
+        backBtn.addEventListener('click', handleBackspace);
+        const enterBtn = document.createElement('button');
+        enterBtn.className = 'vk-btn special';
+        enterBtn.textContent = 'Enter';
+        enterBtn.addEventListener('click', submitWord);
+        divSpecial.appendChild(backBtn);
+        divSpecial.appendChild(enterBtn);
+        vkContainer.appendChild(divSpecial);
 
-        document.addEventListener('keydown', (e) => {
-            if (document.activeElement === hiddenInput || currentRow >= rows) return;
-            if (e.key === 'Backspace') { if (currentCol > 0) { currentCol--; setCell(currentRow, currentCol, ""); updateSubmitButtonState(); } e.preventDefault(); }
-            else if (/^[a-zA-Z]$/.test(e.key)) { if (currentCol < maxCols) { setCell(currentRow, currentCol, e.key.toUpperCase()); currentCol++; updateSubmitButtonState(); } e.preventDefault(); }
-            else if (e.key === 'Enter') { if (currentCol === maxCols) submitWord(); e.preventDefault(); }
-        });
+        // Manejo de teclas virtuales
+        function handleKey(ch) {
+            if (currentCol < maxCols) {
+                setCell(currentRow, currentCol, ch);
+                currentCol++;
+            }
+        }
 
-        submitBtn.addEventListener('click', submitWord);
-        restartBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Wordle")');
-        cancelBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Home")');
+        function handleBackspace() {
+            if (currentCol > 0) {
+                currentCol--;
+                setCell(currentRow, currentCol, "");
+            }
+        }
 
         function submitWord() {
-            if (currentCol !== maxCols) return;
+            if (!updateRowComplete()) return;
             const attemptArr = [];
-            for (let i = 0; i < maxCols; i++) { const cell = getCell(currentRow, i); if (!cell) return; attemptArr.push(cell.textContent.toUpperCase()); }
+            for (let i = 0; i < maxCols; i++) {
+                const cell = getCell(currentRow, i);
+                if (!cell) return;
+                attemptArr.push(cell.textContent.toUpperCase());
+            }
             const targetArr = letrasReales.split("");
             const checked = Array(targetArr.length).fill(false);
 
-            for (let i = 0; i < maxCols; i++) { if (attemptArr[i] === targetArr[i]) { getCell(currentRow, i).classList.add('correct'); checked[i] = true; } }
-            for (let i = 0; i < maxCols; i++) { const cell = getCell(currentRow, i); if (cell.classList.contains('correct')) continue; const idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[i]); if (idx !== -1) { cell.classList.add('present'); checked[idx] = true; } else { cell.classList.add('absent'); } }
+            // Correct
+            for (let i = 0; i < maxCols; i++) {
+                if (attemptArr[i] === targetArr[i]) {
+                    getCell(currentRow, i).classList.add('correct');
+                    checked[i] = true;
+                }
+            }
+            // Present/Absent
+            for (let i = 0; i < maxCols; i++) {
+                const cell = getCell(currentRow, i);
+                if (cell.classList.contains('correct')) continue;
+                const idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[i]);
+                if (idx !== -1) { cell.classList.add('present'); checked[idx] = true; }
+                else { cell.classList.add('absent'); }
+            }
 
-            if (attemptArr.join("") === letrasReales) { endMessage.textContent = `¡Ganaste! Respuesta: ${rawWord}`; finishGame(true); return; }
+            if (attemptArr.join("") === letrasReales) {
+                endMessage.textContent = `¡Ganaste! Respuesta: ${rawWord}`;
+                finishGame(true);
+                return;
+            }
 
-            currentRow++; currentCol = 0; updateSubmitButtonState();
-            if (currentRow >= rows) { endMessage.textContent = `Perdiste. La respuesta era: ${rawWord}`; finishGame(false); }
+            currentRow++; currentCol = 0;
+            if (currentRow >= rows) {
+                endMessage.textContent = `Perdiste. La respuesta era: ${rawWord}`;
+                finishGame(false);
+            }
         }
 
         function finishGame(win) {
-            submitBtn.style.display = 'none';
             endButtons.style.display = 'block';
+
+            const vkContainer = document.getElementById('virtual-keyboard');
+            vkContainer.style.display = 'none';
+
             const rect = board.getBoundingClientRect();
             board.innerHTML = "";
             const img = document.createElement("img");
             img.src = win ? "/images/wordle/ganador.jpg" : "/images/wordle/perdedor.jpg";
-            img.style.width = rect.width + "px"; img.style.height = rect.height + "px";
-            img.style.objectFit = "cover"; img.style.display = "block"; img.style.margin = "0 auto";
+            img.style.width = rect.width + "px";
+            img.style.height = rect.height + "px";
+            img.style.objectFit = "cover";
+            img.style.display = "block";
+            img.style.margin = "0 auto";
             board.appendChild(img);
         }
+
+        restartBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Wordle")');
+        cancelBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Home")');
+
+        // Soporte teclado físico desktop
+        document.addEventListener('keydown', (e) => {
+            if (currentRow >= rows) return;
+            const key = e.key.toUpperCase();
+            if (key === 'BACKSPACE') handleBackspace();
+            else if (key === 'ENTER') submitWord();
+            else if (/^[A-Z]$/.test(key)) handleKey(key);
+        });
     </script>
 }
