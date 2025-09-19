@@ -116,7 +116,7 @@ async function unirseSala() {
         return;
     }
 
-    let sala = document.getElementById("txtCodigoUnirse").value.trim();
+    let sala = document.getElementById("txtCodigoUnirse").value.trim().toUpperCase();
     let nombre = document.getElementById("txtNombreUnirse").value.trim();
 
     const errorCodigo = document.getElementById("errorCodigoUnirse");

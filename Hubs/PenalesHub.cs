@@ -37,7 +37,7 @@ public class PenalesHub : Hub
             sala.Equipo2.Add(nombre);
 
         // Asignar capitán del equipo 2 si es el primer jugador
-        if (sala.Equipo2.Count == 1)
+        if (sala.Equipo2.Count == 1 && sala.Equipo1.Count == 1)
             sala.CapitanEquipo2 = nombre;
 
         // Reasignar arqueros aleatorios
