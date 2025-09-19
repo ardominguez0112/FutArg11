@@ -1,5 +1,9 @@
 ﻿@model FutArg11.Models.ViewModels.WordleViewModel
 
+@section Head {
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+}
+
 @{
     ViewData["Title"] = "FutArg Wordle";
     var maxIntentos = 6;
@@ -118,8 +122,8 @@
             }
 
             .vk-btn.special {
-                width: 60px;
-                font-size: 0.9rem;
+                width: 80px;
+                font-size: 1.2rem;
             }
     </style>
 }
