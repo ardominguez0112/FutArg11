@@ -4,60 +4,46 @@
     ViewData["Title"] = "FutArg Wordle";
     var maxIntentos = 6;
     var apellido = Model.ApellidoObjetivo;
-    var letrasSinEspacios = apellido.Replace(" ", "");
+    var letrasReales = apellido.Replace(" ", "");
+    var maxCols = letrasReales.Length;
 }
 
-<h1 class="text-center my-4">FutArg Wordle</h1>
-
 <div class="row">
-<div class="container wordle-container text-center">
+    <div class="container wordle-container text-center">
 
-    <!-- Tablero -->
-    <div id="wordle-board" class="mb-4">
-        @for (int i = 0; i < maxIntentos; i++)
-        {
-            <div class="d-flex justify-content-center mb-2">
-                @{
-                    var colCount = 0; // ✅ Solo letras reales
-                }
-                @for (int j = 0; j < apellido.Length; j++)
-                {
-                    if (apellido[j] == ' ')
-                    {
-                        <div class="wordle-cell empty-space"></div>
+        <div id="wordle-board" class="mb-4">
+            @for (int i = 0; i < maxIntentos; i++)
+            {
+                <div class="d-flex justify-content-center mb-2">
+                    @{
+                        var colCount = 0;
                     }
-                    else
+                    @for (int j = 0; j < apellido.Length; j++)
                     {
-                        <div class="wordle-cell" data-row="@i" data-col="@colCount"></div>
-                        colCount++;
+                        if (apellido[j] == ' ')
+                        {
+                            <div class="wordle-cell empty-space"></div>
+                        }
+                        else
+                        {
+                            <div class="wordle-cell" data-row="@i" data-col="@colCount"></div>
+                            colCount++;
+                        }
                     }
-                }
-            </div>
-        }
+                </div>
+            }
+            <input id="hidden-input" type="text" autocomplete="off" autocorrect="off"
+                   style="opacity:0; width:1px; height:1px; border:none; padding:0; margin:0;" />
+        </div>
+
+        <div id="end-game-buttons" style="display:none;" class="mb-3">
+            <h3 id="end-message" class="mb-3"></h3>
+            <button id="restart-btn" class="btn btn-success me-2">Volver a jugar</button>
+            <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
+        </div>
+
+        <button id="submit-btn" class="btn btn-primary" disabled>Enter</button>
     </div>
-
-    <!-- Botones finales -->
-    <div id="end-game-buttons" style="display:none;" class="mb-3">
-        <h3 id="end-message" class="mb-3"></h3>
-        <button id="restart-btn" class="btn btn-success me-2">Volver a jugar</button>
-        <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
-    </div>
-
-    <!-- Botón enviar -->
-    <button id="submit-btn" class="btn btn-primary">Enter</button>
-
-</div>
-<div class="col-md-4">
-    <h4>Pistas</h4>
-    <ul class="list-unstyled">
-        <li><img src="~/diego10.jpg" width="40">Pais:</li>
-        <li>Edad:</li>
-        <li>Clubes: </li>
-        <li>Títulos:</li>
-        <li>Posición:</li>
-        <li>Apodo:</li>
-    </ul>
-</div>
 </div>
 
 @section Styles {
@@ -102,6 +88,11 @@
                 border: none;
                 background: transparent;
             }
+
+        #submit-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     </style>
 }
 
@@ -109,8 +100,8 @@
     <script>
         const rows = @maxIntentos;
         const rawWord = "@apellido";
-        const word = rawWord.replace(/\s/g, "").toUpperCase();
-        const maxCols = word.length;
+        const letrasReales = "@letrasReales".toUpperCase();
+        const maxCols = letrasReales.length;
 
         let currentRow = 0;
         let currentCol = 0;
@@ -120,108 +111,66 @@
         const endMessage = document.getElementById('end-message');
         const restartBtn = document.getElementById('restart-btn');
         const cancelBtn = document.getElementById('cancel-btn');
+        const hiddenInput = document.getElementById('hidden-input');
+        const board = document.getElementById('wordle-board');
 
-        document.addEventListener('keydown', handleKey);
+        function focusHiddenInput() { setTimeout(() => hiddenInput.focus(), 50); }
+        focusHiddenInput();
+        board.addEventListener('click', focusHiddenInput);
+
+        function getCell(row, col) { return board.querySelector(`.wordle-cell[data-row="${row}"][data-col="${col}"]`); }
+        function setCell(row, col, letter) { const cell = getCell(row, col); if (!cell) return; cell.textContent = letter; cell.classList.remove('correct', 'present', 'absent'); }
+        function updateSubmitButtonState() { submitBtn.disabled = currentCol !== maxCols; }
+
+        hiddenInput.addEventListener('input', (e) => {
+            const val = e.target.value.toUpperCase();
+            const ch = val.slice(-1);
+            if (/^[A-Z]$/.test(ch) && currentCol < maxCols) { setCell(currentRow, currentCol, ch); currentCol++; updateSubmitButtonState(); }
+            e.target.value = "";
+        });
+
+        hiddenInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') { if (currentCol > 0) { currentCol--; setCell(currentRow, currentCol, ""); updateSubmitButtonState(); } e.preventDefault(); }
+            else if (e.key === 'Enter') { if (currentCol === maxCols) submitWord(); e.preventDefault(); }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (document.activeElement === hiddenInput || currentRow >= rows) return;
+            if (e.key === 'Backspace') { if (currentCol > 0) { currentCol--; setCell(currentRow, currentCol, ""); updateSubmitButtonState(); } e.preventDefault(); }
+            else if (/^[a-zA-Z]$/.test(e.key)) { if (currentCol < maxCols) { setCell(currentRow, currentCol, e.key.toUpperCase()); currentCol++; updateSubmitButtonState(); } e.preventDefault(); }
+            else if (e.key === 'Enter') { if (currentCol === maxCols) submitWord(); e.preventDefault(); }
+        });
+
         submitBtn.addEventListener('click', submitWord);
-        restartBtn.addEventListener('click', () => location.reload());
-        cancelBtn.addEventListener('click', () => alert('Gracias por jugar!'));
-
-        function handleKey(e) {
-            if (currentRow >= rows) return;
-
-            if (e.key === 'Backspace') {
-                if (currentCol > 0) {
-                    currentCol--;
-                    setCell(currentRow, currentCol, "");
-                }
-                e.preventDefault();
-            }
-            else if (/^[a-zA-Z]$/.test(e.key)) {
-                if (currentCol < maxCols) {
-                    setCell(currentRow, currentCol, e.key.toUpperCase());
-                    currentCol++;
-                }
-                e.preventDefault();
-            }
-            else if (e.key === 'Enter') {
-                if (currentCol === maxCols) {
-                    submitWord();
-                } else {
-                    alert(`Completa las ${maxCols} letras antes de enviar.`);
-                }
-                e.preventDefault();
-            }
-        }
+        restartBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Wordle")');
+        cancelBtn.addEventListener('click', () => window.location.href = '@Url.Action("Index", "Home")');
 
         function submitWord() {
-            if (currentCol !== maxCols) {
-                alert(`Completa las ${maxCols} letras antes de enviar.`);
-                return;
-            }
+            if (currentCol !== maxCols) return;
+            const attemptArr = [];
+            for (let i = 0; i < maxCols; i++) { const cell = getCell(currentRow, i); if (!cell) return; attemptArr.push(cell.textContent.toUpperCase()); }
+            const targetArr = letrasReales.split("");
+            const checked = Array(targetArr.length).fill(false);
 
-            let attempt = "";
-            for (let col = 0; col < maxCols; col++) {
-                attempt += getCell(currentRow, col).textContent || "";
-            }
-            attempt = attempt.toUpperCase();
+            for (let i = 0; i < maxCols; i++) { if (attemptArr[i] === targetArr[i]) { getCell(currentRow, i).classList.add('correct'); checked[i] = true; } }
+            for (let i = 0; i < maxCols; i++) { const cell = getCell(currentRow, i); if (cell.classList.contains('correct')) continue; const idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[i]); if (idx !== -1) { cell.classList.add('present'); checked[idx] = true; } else { cell.classList.add('absent'); } }
 
-            let targetArr = word.split("");
-            let attemptArr = attempt.split("");
-            let checked = Array(targetArr.length).fill(false);
+            if (attemptArr.join("") === letrasReales) { endMessage.textContent = `¡Ganaste! Respuesta: ${rawWord}`; finishGame(true); return; }
 
-            // Correctas
-            for (let col = 0; col < maxCols; col++) {
-                let cell = getCell(currentRow, col);
-                if (attemptArr[col] === targetArr[col]) {
-                    cell.classList.add('correct');
-                    checked[col] = true;
-                }
-            }
-
-            // Presentes y ausentes
-            for (let col = 0; col < maxCols; col++) {
-                let cell = getCell(currentRow, col);
-                if (cell.classList.contains('correct')) continue;
-
-                let idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[col]);
-                if (idx !== -1) {
-                    cell.classList.add('present');
-                    checked[idx] = true;
-                } else {
-                    cell.classList.add('absent');
-                }
-            }
-
-            if (attempt === word) {
-                endMessage.textContent = `¡Ganaste! Respuesta: ${rawWord}`;
-                finishGame();
-                return;
-            }
-
-            currentRow++;
-            currentCol = 0;
-
-            if (currentRow >= rows) {
-                endMessage.textContent = `Juego terminado. La respuesta era: ${rawWord}`;
-                finishGame();
-            }
+            currentRow++; currentCol = 0; updateSubmitButtonState();
+            if (currentRow >= rows) { endMessage.textContent = `Perdiste. La respuesta era: ${rawWord}`; finishGame(false); }
         }
 
-        function getCell(row, col) {
-            return document.querySelector(`.wordle-cell[data-row="${row}"][data-col="${col}"]`);
-        }
-
-        function setCell(row, col, letter) {
-            const cell = getCell(row, col);
-            if (!cell) return;
-            cell.textContent = letter;
-            cell.classList.remove('correct', 'present', 'absent');
-        }
-
-        function finishGame() {
+        function finishGame(win) {
             submitBtn.style.display = 'none';
             endButtons.style.display = 'block';
-            currentRow = rows;
+            const rect = board.getBoundingClientRect();
+            board.innerHTML = "";
+            const img = document.createElement("img");
+            img.src = win ? "/images/wordle/ganador.jpg" : "/images/wordle/perdedor.jpg";
+            img.style.width = rect.width + "px"; img.style.height = rect.height + "px";
+            img.style.objectFit = "cover"; img.style.display = "block"; img.style.margin = "0 auto";
+            board.appendChild(img);
         }
     </script>
 }

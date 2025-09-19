@@ -30,3 +30,4 @@ C:\Users\adominguez\Documents\My Web Sites\FutArg11\FutArg11\obj\Debug\net8.0\Fu
 C:\Users\adominguez\Documents\My Web Sites\FutArg11\FutArg11\obj\Debug\net8.0\FutArg11.genruntimeconfig.cache
 C:\Users\adominguez\Documents\My Web Sites\FutArg11\FutArg11\obj\Debug\net8.0\ref\FutArg11.dll
 C:\Users\adominguez\Documents\My Web Sites\FutArg11\FutArg11\obj\Debug\net8.0\FutArg11.sourcelink.json
+C:\Users\adominguez\Documents\My Web Sites\FutArg11\FutArg11\bin\Debug\net8.0\wwwroot\data\jugadoresTest.csv

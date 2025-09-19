@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\data\\jugadores.csv"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\data\\jugadoresTest.csv",
+      "PackagePath": "staticwebassets\\data\\jugadoresTest.csv"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -29,16 +33,12 @@
       "PackagePath": "staticwebassets\\images\\amongus.jpg"
     },
     {
-      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco.png",
-      "PackagePath": "staticwebassets\\images\\arco.png"
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\amper.png",
+      "PackagePath": "staticwebassets\\images\\amper.png"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco2.png",
       "PackagePath": "staticwebassets\\images\\arco2.png"
-    },
-    {
-      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco3.png",
-      "PackagePath": "staticwebassets\\images\\arco3.png"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\cancha.jpg",
@@ -105,10 +105,6 @@
       "PackagePath": "staticwebassets\\images\\guante.png"
     },
     {
-      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor.jpg",
-      "PackagePath": "staticwebassets\\images\\impostor.jpg"
-    },
-    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor2.jpg",
       "PackagePath": "staticwebassets\\images\\impostor2.jpg"
     },
@@ -125,8 +121,16 @@
       "PackagePath": "staticwebassets\\images\\pelota.png"
     },
     {
-      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\stadium.jpg",
-      "PackagePath": "staticwebassets\\images\\stadium.jpg"
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\pinossea.png",
+      "PackagePath": "staticwebassets\\images\\pinossea.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\wordle\\ganador.jpg",
+      "PackagePath": "staticwebassets\\images\\wordle\\ganador.jpg"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\wordle\\perdedor.jpg",
+      "PackagePath": "staticwebassets\\images\\wordle\\perdedor.jpg"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\js\\impostorLobby.js",

@@ -84,6 +84,33 @@ html, body {
     }
 
 
+.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 17, 29, 0.9); /* mismo tono que navbar */
+    color: #e6f0fa;
+    font-family: 'AdiCup Q 2022', sans-serif;
+    z-index: 9999;
+    gap: 10px;
+}
+
+    .footer-fixed a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+    }
+
+        .footer-fixed a:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s;
+        }
+
+    .footer-fixed i {
+        vertical-align: middle; /* elimina subrayado/espacio */
+    }
+
 /* ====================== */
 /* === TITULOS === */
 /* ====================== */
@@ -359,6 +386,4 @@ button:disabled {
         flex: 0 0 100%;
         max-width: 100%;
     }
-
-    
 }

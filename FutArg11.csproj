@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\data\jugadoresTest.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\data\jugadores.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
