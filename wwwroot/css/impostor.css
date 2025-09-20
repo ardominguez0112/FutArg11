@@ -2,7 +2,7 @@
 /* === POPUP IMPOSTOR === */
 /* ====================== */
 .impostor-popup {
-    display: none; /* empieza oculto */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
