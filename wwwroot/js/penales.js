@@ -6,7 +6,10 @@ let objetoSala = null;
 let owner = false;
 let nombreUsuario = "";
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/penalesHub")
+    .withUrl("/penalesHub", {
+        transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling
+    })
+    .configureLogging(signalR.LogLevel.Information)
     .build();
 
 let turnoActual = null;

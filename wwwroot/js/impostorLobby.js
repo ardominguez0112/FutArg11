@@ -13,7 +13,9 @@ let votoRealizado = false;
 
 // Conexión a SignalR
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/impostorHub")
+    .withUrl("/impostorHub", {
+        transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling
+    })
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
