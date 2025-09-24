@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KigM+3xKjS94nRk87T222MDmAsJ0IUZSgmhr4km973o=",
+  "Hash": "msPt1bhaXWnXabgUaVS4I95LUzk+AcIR91Zrb9A/vos=",
   "Source": "FutArg11",
   "BasePath": "_content/FutArg11",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Always",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\data\\jugadores.csv"
+    },
+    {
+      "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\data\\jugadores.json",
+      "SourceId": "FutArg11",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\",
+      "BasePath": "_content/FutArg11",
+      "RelativePath": "data/jugadores.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\data\\jugadores.json"
     },
     {
       "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\data\\jugadoresTest.csv",
@@ -224,6 +243,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\arco2.png"
+    },
+    {
+      "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arquero.png",
+      "SourceId": "FutArg11",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\",
+      "BasePath": "_content/FutArg11",
+      "RelativePath": "images/arquero.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\arquero.png"
     },
     {
       "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\cancha.jpg",

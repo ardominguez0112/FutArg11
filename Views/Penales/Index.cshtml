@@ -38,50 +38,42 @@
 
 
                 <div class="row mt-4">
-                    <div id="seleccionEquipo1" class="mt-3 col-md-6">
+                    <div id="seleccionEquipo1" class="mt-3 col-md-6 text-center">
                         <label class="fw-bold">Selección de equipo 1</label>
-                        <select id="ddlEquipo1" class="form-select text-center">
-                            <option value="">-</option>
-                            <option value="river">River</option>
-                            <option value="boca">Boca</option>
-                            <option value="liverpool">Liverpool</option>
-                            <option value="madrid">Real Madrid</option>
-                            <option value="barcelona">Barcelona</option>
-                            <option value="atleti">Atlético Madrid</option>
-                            <option value="bayern">Bayern Munich</option>
-                            <option value="city">Man. City</option>
-                            <option value="united">Man. United</option>
-                        </select>
-                        <button class="btn btn-success mt-2 w-100" onclick="seleccionarEquipo(1)">Confirmar</button>
+                        <div class="carrusel-equipo d-flex align-items-center justify-content-center mt-2">
+                            <button id="prevEquipo1" class="btn btn-light btn-sm me-2" onclick="cambiarEquipo(1, -1)">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <div class="equipo-actual">
+                                <img id="imgEquipo1" src="/images/equipos/river.png" style="height:60px;">
+                            </div>
+                            <button id="nextEquipo1" class="btn btn-light btn-sm ms-2" onclick="cambiarEquipo(1, 1)">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div id="seleccionEquipo2" class="mt-3 col-md-6">
+
+                    <div id="seleccionEquipo2" class="mt-3 col-md-6 text-center">
                         <label class="fw-bold">Selección de equipo 2</label>
-                        <select id="ddlEquipo2" class="form-select text-center">
-                            <option value="">-</option>
-                            <option value="river">River</option>
-                            <option value="boca">Boca</option>
-                            <option value="liverpool">Liverpool</option>
-                            <option value="madrid">Real Madrid</option>
-                            <option value="barcelona">Barcelona</option>
-                            <option value="atleti">Atlético Madrid</option>
-                            <option value="bayern">Bayern Munich</option>
-                            <option value="city">Man. City</option>
-                            <option value="united">Man. United</option>
-                        </select>
-                        <button class="btn btn-success mt-2 w-100" onclick="seleccionarEquipo(2)">Confirmar</button>
+                        <div class="carrusel-equipo d-flex align-items-center justify-content-center mt-2">
+                            <button id="prevEquipo2" class="btn btn-light btn-sm me-2" onclick="cambiarEquipo(2, -1)">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <div class="equipo-actual">
+                                <img id="imgEquipo2" src="/images/equipos/boca.png" style="height:60px;">
+                            </div>
+                            <button id="nextEquipo2" class="btn btn-light btn-sm ms-2" onclick="cambiarEquipo(2, 1)">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <br />
-                        <h4 id="fotoequipo1" class="text-danger">Equipo 1</h4>
-                        
                         <ul id="equipo1" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                     <div class="col-md-6">
-                        <br />
-                        <h4 id="fotoequipo2" class="text-info">Equipo 2</h4>
-                        
                         <ul id="equipo2" class="list-group list-group-flush equipo-list"></ul>
                     </div>
                 </div>
@@ -92,6 +84,7 @@
                             style="display:none; min-width:200px;" onclick="iniciarPartida()">
                         Iniciar Partida
                     </button>
+                    <div id="mensajeOwner" class="text-danger" style="display:none">Solo el lider puede iniciar</div>
                 </div>
             </div>
 
@@ -185,7 +178,7 @@
         .arco-grid {
             display: grid;
             grid-template-columns: repeat(3, 9rem);
-            grid-template-rows: repeat(3, 2.7rem);
+            grid-template-rows: repeat(2, 4rem);
             gap: 0.5rem;
             justify-content: center;
             align-content: center;
@@ -206,7 +199,7 @@
         .arco-grid button {
             position: relative;
             width: 9rem;
-            height: 2.7rem;
+            height: 4rem;
             border-radius: 20%;
             cursor: pointer;
             background-color: rgba(255,255,255,0.6);
@@ -238,17 +231,30 @@
             display: block !important;
             animation: pop 0.5s ease-out forwards;
         }
+
+        .carrusel-equipo button {
+            font-size: 1.2rem;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .equipo-actual {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         /* Responsivo */
         @@media (max-width: 576px) {
             .arco-grid {
                 grid-template-columns: repeat(3, 6rem);
-                grid-template-rows: repeat(3, 2rem);
+                grid-template-rows: repeat(2, 3rem);
                 gap: 0.3rem;
             }
 
                 .arco-grid button {
                     width: 6rem;
-                    height: 2rem;
+                    height: 3rem;
                     background-size: 50%;
                 }
 

@@ -253,11 +253,11 @@ public class PenalesHub : Hub
     {
         if (salas.TryGetValue(sala, out var salaObj))
         {
-            if (equipoNumero == 1 && nombreEquipo != null && nombreEquipo != "" && !salaObj.Equipo1Seleccionado)
+            if (equipoNumero == 1 && !string.IsNullOrEmpty(nombreEquipo))
             {
                 salaObj.NombreEquipo1 = nombreEquipo;
             }
-            else if (equipoNumero == 2 && nombreEquipo != null && nombreEquipo != "" && !salaObj.Equipo2Seleccionado)
+            else if (equipoNumero == 2 && !string.IsNullOrEmpty(nombreEquipo))
             {
                 salaObj.NombreEquipo2 = nombreEquipo;
             }
@@ -266,6 +266,11 @@ public class PenalesHub : Hub
             await Clients.Group(sala).SendAsync("EquipoSeleccionado", equipoNumero, nombreEquipo);
             await Clients.Group(sala).SendAsync("SalaActualizada", salaObj);
         }
+    }
+
+    public async Task ActualizarCarrusel(string codigoSala, int equipoNumero, string equipoSeleccionado)
+    {
+        await Clients.OthersInGroup(codigoSala).SendAsync("CarruselActualizado", equipoNumero, equipoSeleccionado);
     }
 }
 

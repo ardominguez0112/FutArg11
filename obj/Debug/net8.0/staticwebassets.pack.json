@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\data\\jugadores.csv"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\data\\jugadores.json",
+      "PackagePath": "staticwebassets\\data\\jugadores.json"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\data\\jugadoresTest.csv",
       "PackagePath": "staticwebassets\\data\\jugadoresTest.csv"
     },
@@ -39,6 +43,10 @@
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arco2.png",
       "PackagePath": "staticwebassets\\images\\arco2.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\arquero.png",
+      "PackagePath": "staticwebassets\\images\\arquero.png"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\cancha.jpg",

@@ -1,7 +1,10 @@
-﻿namespace FutArg11.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace FutArg11.Models.Entities
 {
     public class Jugador
     {
+        [JsonPropertyName("Nombre")]
         public string NombreCompleto { get; set; }
         public string Apellido
         {
@@ -35,7 +38,7 @@
                 return string.Join(' ', apellidoPartes);
             }
         }
-        public string Nacionalidad { get; set; }
-        public List<Club> Clubes { get; set; }
+        public string Pais { get; set; }
+        public string Clubes { get; set; }
     }
 }

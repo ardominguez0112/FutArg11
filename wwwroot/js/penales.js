@@ -36,6 +36,8 @@ async function crearSala() {
 
     await connection.invoke("CrearSala", salaActual, nombreUsuario);
 
+    seleccionarEquipo(1);
+    seleccionarEquipo(2);
     document.getElementById("codigoSala").innerText = salaActual;
     document.getElementById("popupSala").style.display = "block";
     document.getElementById("btnIniciar").style.display = "block";
@@ -74,6 +76,8 @@ async function unirseSala() {
 
     await connection.invoke("UnirseSala", salaActual, nombreUsuario);
 
+    seleccionarEquipo(1);
+    seleccionarEquipo(2);
     document.getElementById("codigoSala").innerText = salaActual;
     document.getElementById("popupSala").style.display = "block";
     document.getElementById("btnIniciar").style.display = "block";
@@ -137,6 +141,7 @@ connection.on("SalaActualizada", (sala) => {
 
     actualizarEstadoBotonIniciar(sala);
 });
+
 
 connection.on("EquipoSeleccionado", (equipoNumero, nombreEquipo) => {
     // Mostrar el nombre y escudo
@@ -289,6 +294,18 @@ connection.on("VolverAlLobby", (equipo1, arquero1, equipo2, arquero2) => {
     };
 });
 
+connection.on("CarruselActualizado", (equipoNumero, equipo) => {
+    if (equipoNumero === 1) {
+        equipoSeleccionado1 = equipo;
+        indiceEquipo1 = equipos.indexOf(equipo);
+        document.getElementById("imgEquipo1").src = `/images/equipos/${equipoSeleccionado1}.png`;
+    } else {
+        equipoSeleccionado2 = equipo;
+        indiceEquipo2 = equipos.indexOf(equipo);
+        document.getElementById("imgEquipo2").src = `/images/equipos/${equipoSeleccionado2}.png`;
+    }
+});
+
 // =====================
 // Función para mostrar resultado
 // =====================
@@ -310,8 +327,8 @@ function mostrarResultado(ganador) {
 
     mensaje.innerHTML = `
   <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
-    <img src="/images/copa.png" style="height:3rem;" class="align-middle">
-    <img src="/images/equipos/${nombreEquipoGanador}.png" style="height:3rem;" class="align-middle">
+    <img src="/images/copa.png" style="height:5rem;" class="align-middle">
+    <img src="/images/equipos/${nombreEquipoGanador}.png" style="height:5rem;" class="align-middle">
   </span>
 `;
 
@@ -353,7 +370,7 @@ function generarGrid() {
     grid.innerHTML = "";
     grid.classList.add("arco-grid"); // que tome los estilos de arriba
 
-    for (let r = 0; r < 3; r++) {
+    for (let r = 0; r < 2; r++) {
         for (let c = 0; c < 3; c++) {
             const btn = document.createElement("button");
             btn.onclick = () => seleccionarCelda(r, c);
@@ -465,87 +482,46 @@ function crearCasillaPenal() {
 
 
 async function seleccionarEquipo(equipoNumero) {
-    const ddl = document.getElementById(`ddlEquipo${equipoNumero}`);
-    const equipo = ddl.value;
+    const equipo = equipoNumero === 1 ? equipoSeleccionado1 : equipoSeleccionado2;
 
     if (!equipo) {
-        alert("Elegí un equipo antes de confirmar.");
+        alert("Elegí un equipo antes de confirmar."); // opcional, pero seguro no pasa
         return;
     }
+
     await ensureConnection();
     await connection.invoke("SeleccionarEquipo", salaActual, equipoNumero, equipo);
 }
 
 function actualizarSelectoresCapitanes(sala) {
-    const ddl1 = document.getElementById("ddlEquipo1");
-    const ddl2 = document.getElementById("ddlEquipo2");
-    const btn1 = document.querySelector("#seleccionEquipo1 button");
-    const btn2 = document.querySelector("#seleccionEquipo2 button");
-
-    // Mostrar equipos ya seleccionados
-    if (sala.equipo1Seleccionado) {
-        ddl1.value = sala.nombreEquipo1;
-        btn1.innerText = "Equipo confirmado";
-        ddl1.disabled = true;
-        btn1.disabled = true;
-    }
-    if (sala.equipo2Seleccionado) {
-        ddl2.value = sala.nombreEquipo2;
-        btn2.innerText = "Equipo confirmado";
-        ddl2.disabled = true;
-        btn2.disabled = true;
-    }
-
+    
     const esCapitanEquipo1 = nombreUsuario === sala.owner;
     const esCapitanEquipo2 = nombreUsuario === sala.capitanEquipo2;
 
     // Equipo 1
-    if (!esCapitanEquipo1 && !sala.equipo1Seleccionado) {
-        ddl1.disabled = true;
-        btn1.disabled = true;
-        btn1.innerText = "Capitán eligiendo equipo...";
-    } else if (esCapitanEquipo1 && !sala.equipo1Seleccionado) {
-        ddl1.disabled = false;
-        btn1.disabled = false;
-        btn1.innerText = "Confirmar";
+    if (!esCapitanEquipo1) {
+        document.getElementById("prevEquipo1").disabled = true;
+        document.getElementById("nextEquipo1").disabled = true;
     }
 
     // Equipo 2
-    if (!esCapitanEquipo2 && !sala.equipo2Seleccionado) {
-        ddl2.disabled = true;
-        btn2.disabled = true;
-        btn2.innerText = "Capitán eligiendo equipo...";
-    } else if (esCapitanEquipo2 && !sala.equipo2Seleccionado) {
-        ddl2.disabled = false;
-        btn2.disabled = false;
-        btn2.innerText = "Confirmar";
+    if (!esCapitanEquipo2) {
+        document.getElementById("prevEquipo2").disabled = true;
+        document.getElementById("nextEquipo2").disabled = true;
     }
+
 }
 
 function actualizarEstadoBotonIniciar(sala) {
     const btnIniciar = document.getElementById("btnIniciar");
-    let mensaje = document.getElementById("mensajeEsperandoEquipos");
-
-    if (!mensaje) {
-        mensaje = document.createElement("span");
-        mensaje.id = "mensajeEsperandoEquipos";
-        mensaje.style.color = "red";
-        mensaje.style.display = "block"; 
-        mensaje.style.marginTop = "0.5rem";
-        btnIniciar.parentNode.appendChild(mensaje);
-    }
+    const mensaje = document.getElementById("mensajeOwner");
 
     if (owner) {
-        if (sala.equipo1Seleccionado && sala.equipo2Seleccionado) {
-            btnIniciar.disabled = false;
-            mensaje.innerText = "";
-        } else {
-            btnIniciar.disabled = true;
-            mensaje.innerText = "Esperando confirmación de equipos";
-        }
+        btnIniciar.disabled = false;
+
     } else {
         btnIniciar.disabled = true;
-        mensaje.innerText = "Solo el lider puede iniciar la partida"; // otros jugadores no ven mensaje
+        mensaje.style.display = "block";
     }
 }
 
@@ -582,4 +558,29 @@ async function ensureConnection() {
             alert("Error de conexión, recarga la página.");
         }
     }
+}
+
+
+const equipos = ["river", "boca", "liverpool", "madrid", "barcelona", "atleti", "bayern", "city", "united"];
+let indiceEquipo1 = 0;
+let indiceEquipo2 = 1; // distinto del 1
+
+let equipoSeleccionado1 = equipos[indiceEquipo1];
+let equipoSeleccionado2 = equipos[indiceEquipo2];
+
+async function cambiarEquipo(equipoNumero, direccion) {
+    if (equipoNumero === 1) {
+        indiceEquipo1 = (indiceEquipo1 + direccion + equipos.length) % equipos.length;
+        equipoSeleccionado1 = equipos[indiceEquipo1];
+        document.getElementById("imgEquipo1").src = `/images/equipos/${equipoSeleccionado1}.png`;
+        seleccionarEquipo(1);
+    } else {
+        indiceEquipo2 = (indiceEquipo2 + direccion + equipos.length) % equipos.length;
+        equipoSeleccionado2 = equipos[indiceEquipo2];
+        document.getElementById("imgEquipo2").src = `/images/equipos/${equipoSeleccionado2}.png`;
+        seleccionarEquipo(2);
+    }
+
+    await ensureConnection();
+    await connection.invoke("ActualizarCarrusel", salaActual, equipoNumero, equipoNumero === 1 ? equipoSeleccionado1 : equipoSeleccionado2);
 }

@@ -1,0 +1,772 @@
+[
+  {
+    "Nombre": "Lionel Messi",
+    "Pais": "Argentina",
+    "Clubes": "Newell's Old Boys;Barcelona;PSG;Inter Miami"
+  },
+  {
+    "Nombre": "Cristiano Ronaldo",
+    "Pais": "Portugal",
+    "Clubes": "Sporting CP;Manchester United;Real Madrid;Juventus;Al Nassr"
+  },
+  {
+    "Nombre": "Diego Maradona",
+    "Pais": "Argentina",
+    "Clubes": "Argentinos Juniors;Boca Juniors;Barcelona;Napoli;Sevilla"
+  },
+  {
+    "Nombre": "Pele",
+    "Pais": "Brasil",
+    "Clubes": "Santos;New York Cosmos"
+  },
+  {
+    "Nombre": "Zinedine Zidane",
+    "Pais": "Francia",
+    "Clubes": "Cannes;Bordeaux;Juventus;Real Madrid"
+  },
+  {
+    "Nombre": "Ronaldinho",
+    "Pais": "Brasil",
+    "Clubes": "Grêmio;PSG;Barcelona;Milan"
+  },
+  {
+    "Nombre": "Neymar Jr",
+    "Pais": "Brasil",
+    "Clubes": "Santos;Barcelona;PSG;Al Hilal"
+  },
+  {
+    "Nombre": "Kylian Mbappe",
+    "Pais": "Francia",
+    "Clubes": "Monaco;PSG;Real Madrid"
+  },
+  {
+    "Nombre": "Erling Haaland",
+    "Pais": "Noruega",
+    "Clubes": "Bryne;Molde;RB Salzburg;Borussia Dortmund;Manchester City"
+  },
+  {
+    "Nombre": "Robert Lewandowski",
+    "Pais": "Polonia",
+    "Clubes": "Znicz Pruszkow;Lech Poznań;Borussia Dortmund;Bayern Munich;Barcelona"
+  },
+  {
+    "Nombre": "Karim Benzema",
+    "Pais": "Francia",
+    "Clubes": "Lyon;Real Madrid;Al-Ittihad"
+  },
+  {
+    "Nombre": "Luka Modrić",
+    "Pais": "Croacia",
+    "Clubes": "Dinamo Zagreb;Tottenham;Real Madrid"
+  },
+  {
+    "Nombre": "Andres Iniesta",
+    "Pais": "España",
+    "Clubes": "Barcelona;Vissel Kobe"
+  },
+  {
+    "Nombre": "Xavi Hernandez",
+    "Pais": "España",
+    "Clubes": "Barcelona;Al Sadd"
+  },
+  {
+    "Nombre": "Iker Casillas",
+    "Pais": "España",
+    "Clubes": "Real Madrid;Porto"
+  },
+  {
+    "Nombre": "Gianluigi Buffon",
+    "Pais": "Italia",
+    "Clubes": "Parma;Juventus;PSG"
+  },
+  {
+    "Nombre": "Paolo Maldini",
+    "Pais": "Italia",
+    "Clubes": "Milan"
+  },
+  {
+    "Nombre": "Francesco Totti",
+    "Pais": "Italia",
+    "Clubes": "Roma"
+  },
+  {
+    "Nombre": "David Beckham",
+    "Pais": "Inglaterra",
+    "Clubes": "Manchester United;Real Madrid;LA Galaxy;Milan;PSG"
+  },
+  {
+    "Nombre": "Wayne Rooney",
+    "Pais": "Inglaterra",
+    "Clubes": "Everton;Manchester United;DC United;Derby County"
+  },
+  {
+    "Nombre": "Thierry Henry",
+    "Pais": "Francia",
+    "Clubes": "Monaco;Juventus;Arsenal;Barcelona;New York Red Bulls"
+  },
+  {
+    "Nombre": "Didier Drogba",
+    "Pais": "Costa de Marfil",
+    "Clubes": "Le Mans;Guingamp;Marseille;Chelsea;Shanghai Shenhua;Galatasaray"
+  },
+  {
+    "Nombre": "Samuel Etoo",
+    "Pais": "Camerun",
+    "Clubes": "Real Madrid;Mallorca;Barcelona;Inter Milan;Chelsea"
+  },
+  {
+    "Nombre": "Mohamed Salah",
+    "Pais": "Egipto",
+    "Clubes": "El Mokawloon;Basel;Chelsea;Fiorentina;Roma;Liverpool"
+  },
+  {
+    "Nombre": "Sadio Mane",
+    "Pais": "Senegal",
+    "Clubes": "Metz;RB Salzburg;Southampton;Liverpool;Bayern Munich;Al Nassr"
+  },
+  {
+    "Nombre": "Antoine Griezmann",
+    "Pais": "Francia",
+    "Clubes": "Real Sociedad;Atletico Madrid;Barcelona"
+  },
+  {
+    "Nombre": "Gerard Pique",
+    "Pais": "España",
+    "Clubes": "Manchester United;Barcelona"
+  },
+  {
+    "Nombre": "Sergio Ramos",
+    "Pais": "España",
+    "Clubes": "Sevilla;Real Madrid;PSG;Sevilla"
+  },
+  {
+    "Nombre": "Rivaldo",
+    "Pais": "Brasil",
+    "Clubes": "Palmeiras;Deportivo La Coruña;Barcelona;Milan;Olympiakos"
+  },
+  {
+    "Nombre": "Romario",
+    "Pais": "Brasil",
+    "Clubes": "PSV;Barcelona;Flamengo;Valencia"
+  },
+  {
+    "Nombre": "Johan Cruyff",
+    "Pais": "Paises Bajos",
+    "Clubes": "Ajax;Barcelona;Feyenoord"
+  },
+  {
+    "Nombre": "Marco van Basten",
+    "Pais": "Paises Bajos",
+    "Clubes": "Ajax;Milan"
+  },
+  {
+    "Nombre": "Ruud Gullit",
+    "Pais": "Paises Bajos",
+    "Clubes": "Feyenoord;PSV;Milan;Chelsea"
+  },
+  {
+    "Nombre": "Andriy Shevchenko",
+    "Pais": "Ucrania",
+    "Clubes": "Dinamo Kyiv;Milan;Chelsea"
+  },
+  {
+    "Nombre": "Luis Suarez",
+    "Pais": "Uruguay",
+    "Clubes": "Nacional;Groningen;Ajax;Liverpool;Barcelona;Atletico Madrid"
+  },
+  {
+    "Nombre": "Edinson Cavani",
+    "Pais": "Uruguay",
+    "Clubes": "Danubio;Palermo;Napoli;PSG;Manchester United;Valencia;Boca Juniors"
+  },
+  {
+    "Nombre": "James Rodriguez",
+    "Pais": "Colombia",
+    "Clubes": "Envigado;Porto;Monaco;Real Madrid;Bayern Munich;Everton;São Paulo"
+  },
+  {
+    "Nombre": "Radamel Falcao",
+    "Pais": "Colombia",
+    "Clubes": "River Plate;Porto;Atletico Madrid;Monaco;Manchester United;Chelsea;Rayo Vallecano"
+  },
+  {
+    "Nombre": "Arturo Vidal",
+    "Pais": "Chile",
+    "Clubes": "Colo Colo;Bayer Leverkusen;Juventus;Bayern Munich;Barcelona;Inter Milan;Flamengo"
+  },
+  {
+    "Nombre": "Alexis Sanchez",
+    "Pais": "Chile",
+    "Clubes": "Cobreloa;Udinese;Barcelona;Arsenal;Manchester United;Inter Milan;Marsella"
+  },
+  {
+    "Nombre": "Zlatan Ibrahimovic",
+    "Pais": "Suecia",
+    "Clubes": "Malmö;Ajax;Juventus;Inter Milan;Barcelona;Milan;PSG;Manchester United;LA Galaxy;Milan"
+  },
+  {
+    "Nombre": "Andrea Pirlo",
+    "Pais": "Italia",
+    "Clubes": "Brescia;Inter Milan;Reggina;Milan;Juventus;New York City FC"
+  },
+  {
+    "Nombre": "Gennaro Gattuso",
+    "Pais": "Italia",
+    "Clubes": "Perugia;Salernitana;Milan"
+  },
+  {
+    "Nombre": "Roberto Baggio",
+    "Pais": "Italia",
+    "Clubes": "Vicenza;Fiorentina;Juventus;Milan;Bologna;Inter;Brescia"
+  },
+  {
+    "Nombre": "Claudio Marchisio",
+    "Pais": "Italia",
+    "Clubes": "Juventus;Zenit"
+  },
+  {
+    "Nombre": "Alessandro Del Piero",
+    "Pais": "Italia",
+    "Clubes": "Juventus;Sydney FC;Delhi Dynamos"
+  },
+  {
+    "Nombre": "Clarence Seedorf",
+    "Pais": "Paises Bajos",
+    "Clubes": "Ajax;Sampdoria;Real Madrid;Inter Milan;Milan"
+  },
+  {
+    "Nombre": "Frank Lampard",
+    "Pais": "Inglaterra",
+    "Clubes": "West Ham;Chelsea;Manchester City;New York City FC"
+  },
+  {
+    "Nombre": "Steven Gerrard",
+    "Pais": "Inglaterra",
+    "Clubes": "Liverpool;LA Galaxy"
+  },
+  {
+    "Nombre": "Paul Scholes",
+    "Pais": "Inglaterra",
+    "Clubes": "Manchester United"
+  },
+  {
+    "Nombre": "Petr Cech",
+    "Pais": "Republica Checa",
+    "Clubes": "Chmel Blsany;Rennes;Chelsea;Arsenal"
+  },
+  {
+    "Nombre": "Philipp Lahm",
+    "Pais": "Alemania",
+    "Clubes": "Bayern Munich;Stuttgart"
+  },
+  {
+    "Nombre": "Bastian Schweinsteiger",
+    "Pais": "Alemania",
+    "Clubes": "Bayern Munich;Manchester United;Chicago Fire"
+  },
+  {
+    "Nombre": "Miroslav Klose",
+    "Pais": "Alemania",
+    "Clubes": "Kaiserslautern;Werder Bremen;Bayern Munich;Lazio"
+  },
+  {
+    "Nombre": "Mesut Ozil",
+    "Pais": "Alemania",
+    "Clubes": "Schalke 04;Werder Bremen;Real Madrid;Arsenal;Fenerbahçe"
+  },
+  {
+    "Nombre": "Toni Kroos",
+    "Pais": "Alemania",
+    "Clubes": "Bayern Munich;Bayer Leverkusen;Real Madrid"
+  },
+  {
+    "Nombre": "Manuel Neuer",
+    "Pais": "Alemania",
+    "Clubes": "Schalke 04;Bayern Munich"
+  },
+  {
+    "Nombre": "Thomas Muller",
+    "Pais": "Alemania",
+    "Clubes": "Bayern Munich"
+  },
+  {
+    "Nombre": "Arjen Robben",
+    "Pais": "Paises Bajos",
+    "Clubes": "Groningen;PSV;Chelsea;Real Madrid;Bayern Munich;Groningen"
+  },
+  {
+    "Nombre": "Wesley Sneijder",
+    "Pais": "Paises Bajos",
+    "Clubes": "Ajax;Real Madrid;Inter Milan;Galatasaray"
+  },
+  {
+    "Nombre": "Robin van Persie",
+    "Pais": "Paises Bajos",
+    "Clubes": "Feyenoord;Arsenal;Manchester United;Fenerbahçe"
+  },
+  {
+    "Nombre": "Dirk Kuyt",
+    "Pais": "Paises Bajos",
+    "Clubes": "Utrecht;Feyenoord;Liverpool;Fenerbahçe"
+  },
+  {
+    "Nombre": "Patrick Kluivert",
+    "Pais": "Paises Bajos",
+    "Clubes": "Ajax;Milan;Barcelona;Newcastle;Valencia"
+  },
+  {
+    "Nombre": "Rui Costa",
+    "Pais": "Portugal",
+    "Clubes": "Benfica;Fiorentina;Milan"
+  },
+  {
+    "Nombre": "Luis Figo",
+    "Pais": "Portugal",
+    "Clubes": "Sporting CP;Barcelona;Real Madrid;Inter Milan"
+  },
+  {
+    "Nombre": "Deco",
+    "Pais": "Portugal",
+    "Clubes": "Porto;Barcelona;Chelsea;Fluminense"
+  },
+  {
+    "Nombre": "Pepe",
+    "Pais": "Portugal",
+    "Clubes": "Maritimo;Porto;Real Madrid;Besiktas;Porto"
+  },
+  {
+    "Nombre": "Angel Di Maria",
+    "Pais": "Argentina",
+    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus;Benfica"
+  },
+  {
+    "Nombre": "Javier Mascherano",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Corinthians;West Ham;Liverpool;Barcelona;Hebei China Fortune;Estudiantes"
+  },
+  {
+    "Nombre": "Carlos Tevez",
+    "Pais": "Argentina",
+    "Clubes": "Boca Juniors;Corinthians;West Ham;Manchester United;Manchester City;Juventus;Shanghai Shenhua"
+  },
+  {
+    "Nombre": "Juan Roman Riquelme",
+    "Pais": "Argentina",
+    "Clubes": "Boca Juniors;Barcelona;Villarreal;Argentinos Juniors"
+  },
+  {
+    "Nombre": "Gabriel Batistuta",
+    "Pais": "Argentina",
+    "Clubes": "Newell's;River Plate;Boca Juniors;Fiorentina;Roma;Inter Milan;Al-Arabi"
+  },
+  {
+    "Nombre": "Hernan Crespo",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Parma;Lazio;Inter Milan;Chelsea;Milan;Genoa;Parma"
+  },
+  {
+    "Nombre": "Roberto Ayala",
+    "Pais": "Argentina",
+    "Clubes": "Ferro;River Plate;Napoli;Milan;Valencia;Zaragoza"
+  },
+  {
+    "Nombre": "Diego Simeone",
+    "Pais": "Argentina",
+    "Clubes": "Velez;Pisa;Sevilla;Atletico Madrid;Inter Milan;Lazio;Racing Club"
+  },
+  {
+    "Nombre": "Fernando Redondo",
+    "Pais": "Argentina",
+    "Clubes": "Argentinos Juniors;Tenerife;Real Madrid;Milan"
+  },
+  {
+    "Nombre": "Pablo Aimar",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Valencia;Zaragoza;Benfica"
+  },
+  {
+    "Nombre": "Esteban Cambiasso",
+    "Pais": "Argentina",
+    "Clubes": "Independiente;River Plate;Real Madrid;Inter Milan;Leicester;Olympiacos"
+  },
+  {
+    "Nombre": "Juan Sebastian Veron",
+    "Pais": "Argentina",
+    "Clubes": "Estudiantes;Boca Juniors;Sampdoria;Parma;Lazio;Manchester United;Chelsea;Inter Milan"
+  },
+  {
+    "Nombre": "David Villa",
+    "Pais": "España",
+    "Clubes": "Sporting Gijon;Zaragoza;Valencia;Barcelona;Atletico Madrid;NYCFC;Vissel Kobe"
+  },
+  {
+    "Nombre": "Fernando Torres",
+    "Pais": "España",
+    "Clubes": "Atletico Madrid;Liverpool;Chelsea;Milan;Atletico Madrid;Sagan Tosu"
+  },
+  {
+    "Nombre": "Raul Gonzalez",
+    "Pais": "España",
+    "Clubes": "Real Madrid;Schalke 04;Al Sadd;New York Cosmos"
+  },
+  {
+    "Nombre": "Carles Puyol",
+    "Pais": "España",
+    "Clubes": "Barcelona"
+  },
+  {
+    "Nombre": "David Silva",
+    "Pais": "España",
+    "Clubes": "Valencia;Manchester City;Real Sociedad"
+  },
+  {
+    "Nombre": "Sergio Busquets",
+    "Pais": "España",
+    "Clubes": "Barcelona;Inter Miami"
+  },
+  {
+    "Nombre": "Cesc Fabregas",
+    "Pais": "España",
+    "Clubes": "Arsenal;Barcelona;Chelsea;Monaco;Como"
+  },
+  {
+    "Nombre": "Gerard Moreno",
+    "Pais": "España",
+    "Clubes": "Villarreal"
+  },
+  {
+    "Nombre": "Sergio Aguero",
+    "Pais": "Argentina",
+    "Clubes": "Independiente;Atletico Madrid;Manchester City;Barcelona"
+  },
+  {
+    "Nombre": "Gonzalo Higuain",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Real Madrid;Napoli;Juventus;Milan;Chelsea;Inter Miami"
+  },
+  {
+    "Nombre": "Mauro Icardi",
+    "Pais": "Argentina",
+    "Clubes": "Barcelona;Sampdoria;Inter Milan;PSG;Galatasaray"
+  },
+  {
+    "Nombre": "Julian Alvarez",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Manchester City"
+  },
+  {
+    "Nombre": "Dibu Martinez",
+    "Pais": "Argentina",
+    "Clubes": "Arsenal;Aston Villa"
+  },
+  {
+    "Nombre": "Rodri",
+    "Pais": "España",
+    "Clubes": "Villarreal;Atletico Madrid;Manchester City"
+  },
+  {
+    "Nombre": "Kevin De Bruyne",
+    "Pais": "Belgica",
+    "Clubes": "Genk;Chelsea;Wolfsburg;Manchester City"
+  },
+  {
+    "Nombre": "Eden Hazard",
+    "Pais": "Belgica",
+    "Clubes": "Lille;Chelsea;Real Madrid"
+  },
+  {
+    "Nombre": "Romelu Lukaku",
+    "Pais": "Belgica",
+    "Clubes": "Anderlecht;Chelsea;Everton;Manchester United;Inter Milan;Roma"
+  },
+  {
+    "Nombre": "Youri Tielemans",
+    "Pais": "Belgica",
+    "Clubes": "Anderlecht;Monaco;Leicester;Aston Villa"
+  },
+  {
+    "Nombre": "Vinicius Jr",
+    "Pais": "Brasil",
+    "Clubes": "Flamengo;Real Madrid"
+  },
+  {
+    "Nombre": "Rodrygo",
+    "Pais": "Brasil",
+    "Clubes": "Santos;Real Madrid"
+  },
+  {
+    "Nombre": "Casemiro",
+    "Pais": "Brasil",
+    "Clubes": "São Paulo;Real Madrid;Manchester United"
+  },
+  {
+    "Nombre": "Alisson",
+    "Pais": "Brasil",
+    "Clubes": "Internacional;Roma;Liverpool"
+  },
+  {
+    "Nombre": "Ederson",
+    "Pais": "Brasil",
+    "Clubes": "Recife;Rio Ave;Benfica;Manchester City"
+  },
+  {
+    "Nombre": "Dibu Martinez",
+    "Pais": "Argentina",
+    "Clubes": "Independiente;Arsenal;Getafe;Reading;Aston Villa"
+  },
+  {
+    "Nombre": "Franco Armani",
+    "Pais": "Argentina",
+    "Clubes": "Ferro;Deportivo Merlo;Atletico Nacional;River Plate"
+  },
+  {
+    "Nombre": "Geronimo Rulli",
+    "Pais": "Argentina",
+    "Clubes": "Estudiantes;Real Sociedad;Montpellier;Villarreal;Ajax"
+  },
+  {
+    "Nombre": "Nahuel Molina",
+    "Pais": "Argentina",
+    "Clubes": "Boca Juniors;Rosario Central;Udinese;Atletico Madrid"
+  },
+  {
+    "Nombre": "Gonzalo Montiel",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Sevilla;Nottingham Forest"
+  },
+  {
+    "Nombre": "Cristian Romero",
+    "Pais": "Argentina",
+    "Clubes": "Belgrano;Genoa;Juventus;Atalanta;Tottenham"
+  },
+  {
+    "Nombre": "Nicolas Otamendi",
+    "Pais": "Argentina",
+    "Clubes": "Velez;Porto;Valencia;Manchester City;Benfica"
+  },
+  {
+    "Nombre": "German Pezzella",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Real Betis;Fiorentina;Betis"
+  },
+  {
+    "Nombre": "Lisandro Martinez",
+    "Pais": "Argentina",
+    "Clubes": "Newell's;Defensa y Justicia;Ajax;Manchester United"
+  },
+  {
+    "Nombre": "Nicolas Tagliafico",
+    "Pais": "Argentina",
+    "Clubes": "Banfield;Independiente;Ajax;Lyon"
+  },
+  {
+    "Nombre": "Marcos Acuña",
+    "Pais": "Argentina",
+    "Clubes": "Ferro;Racing Club;Sporting CP;Sevilla"
+  },
+  {
+    "Nombre": "Leandro Paredes",
+    "Pais": "Argentina",
+    "Clubes": "Boca Juniors;Chievo;Roma;Zenit;PSG;Juventus;Roma"
+  },
+  {
+    "Nombre": "Rodrigo De Paul",
+    "Pais": "Argentina",
+    "Clubes": "Racing Club;Valencia;Udinese;Atletico Madrid"
+  },
+  {
+    "Nombre": "Alexis Mac Allister",
+    "Pais": "Argentina",
+    "Clubes": "Argentinos Juniors;Boca Juniors;Brighton;Liverpool"
+  },
+  {
+    "Nombre": "Enzo Fernandez",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Defensa y Justicia;Benfica;Chelsea"
+  },
+  {
+    "Nombre": "Guido Rodriguez",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Defensa y Justicia;Tijuana;America;Betis"
+  },
+  {
+    "Nombre": "Angel Di Maria",
+    "Pais": "Argentina",
+    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus;Benfica"
+  },
+  {
+    "Nombre": "Paulo Dybala",
+    "Pais": "Argentina",
+    "Clubes": "Instituto;Palermo;Juventus;Roma"
+  },
+  {
+    "Nombre": "Lionel Messi",
+    "Pais": "Argentina",
+    "Clubes": "Newell's Old Boys;Barcelona;PSG;Inter Miami"
+  },
+  {
+    "Nombre": "Lautaro Martinez",
+    "Pais": "Argentina",
+    "Clubes": "Racing Club;Inter Milan"
+  },
+  {
+    "Nombre": "Julian Alvarez",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Manchester City"
+  },
+  {
+    "Nombre": "Angel Correa",
+    "Pais": "Argentina",
+    "Clubes": "San Lorenzo;Atletico Madrid"
+  },
+  {
+    "Nombre": "Thiago Almada",
+    "Pais": "Argentina",
+    "Clubes": "Velez;Atlanta United"
+  },
+  {
+    "Nombre": "Exequiel Palacios",
+    "Pais": "Argentina",
+    "Clubes": "River Plate;Bayer Leverkusen"
+  },
+  {
+    "Nombre": "David Beckham",
+    "Pais": "Inglaterra",
+    "Clubes": "Manchester United;Real Madrid;LA Galaxy;Milan;PSG"
+  },
+  {
+    "Nombre": "Cristiano Ronaldo",
+    "Pais": "Portugal",
+    "Clubes": "Sporting CP;Manchester United;Real Madrid;Juventus;Al Nassr"
+  },
+  {
+    "Nombre": "Neymar Jr",
+    "Pais": "Brasil",
+    "Clubes": "Santos;Barcelona;PSG;Al Hilal"
+  },
+  {
+    "Nombre": "Kylian Mbappe",
+    "Pais": "Francia",
+    "Clubes": "Monaco;PSG;Real Madrid"
+  },
+  {
+    "Nombre": "Zlatan Ibrahimovic",
+    "Pais": "Suecia",
+    "Clubes": "Malmö;Ajax;Juventus;Inter Milan;Barcelona;Milan;PSG;Manchester United;LA Galaxy;Milan"
+  },
+  {
+    "Nombre": "Ronaldinho",
+    "Pais": "Brasil",
+    "Clubes": "Grêmio;PSG;Barcelona;Milan"
+  },
+  {
+    "Nombre": "Zinedine Zidane",
+    "Pais": "Francia",
+    "Clubes": "Cannes;Bordeaux;Juventus;Real Madrid"
+  },
+  {
+    "Nombre": "Nazario Ronaldo",
+    "Pais": "Brasil",
+    "Clubes": "Cruzeiro;PSV;Barcelona;Inter Milan;Real Madrid;Milan"
+  },
+  {
+    "Nombre": "Pele",
+    "Pais": "Brasil",
+    "Clubes": "Santos;New York Cosmos"
+  },
+  {
+    "Nombre": "Diego Maradona",
+    "Pais": "Argentina",
+    "Clubes": "Argentinos Juniors;Boca Juniors;Barcelona;Napoli;Sevilla"
+  },
+  {
+    "Nombre": "Mohamed Salah",
+    "Pais": "Egipto",
+    "Clubes": "El Mokawloon;Basel;Chelsea;Fiorentina;Roma;Liverpool"
+  },
+  {
+    "Nombre": "Karim Benzema",
+    "Pais": "Francia",
+    "Clubes": "Lyon;Real Madrid;Al-Ittihad"
+  },
+  {
+    "Nombre": "Erling Haaland",
+    "Pais": "Noruega",
+    "Clubes": "Bryne;Molde;RB Salzburg;Borussia Dortmund;Manchester City"
+  },
+  {
+    "Nombre": "Luis Suarez",
+    "Pais": "Uruguay",
+    "Clubes": "Nacional;Groningen;Ajax;Liverpool;Barcelona;Atletico Madrid"
+  },
+  {
+    "Nombre": "Edinson Cavani",
+    "Pais": "Uruguay",
+    "Clubes": "Danubio;Palermo;Napoli;PSG;Manchester United;Valencia;Boca Juniors"
+  },
+  {
+    "Nombre": "Gerard Pique",
+    "Pais": "España",
+    "Clubes": "Manchester United;Barcelona"
+  },
+  {
+    "Nombre": "Andres Iniesta",
+    "Pais": "España",
+    "Clubes": "Barcelona;Vissel Kobe"
+  },
+  {
+    "Nombre": "Xavi",
+    "Pais": "España",
+    "Clubes": "Barcelona;Al Sadd"
+  },
+  {
+    "Nombre": "Sergio Ramos",
+    "Pais": "España",
+    "Clubes": "Sevilla;Real Madrid;PSG;Sevilla"
+  },
+  {
+    "Nombre": "Iker Casillas",
+    "Pais": "España",
+    "Clubes": "Real Madrid;Porto"
+  },
+  {
+    "Nombre": "Gareth Bale",
+    "Pais": "Gales",
+    "Clubes": "Southampton;Tottenham;Real Madrid;Los Angeles FC"
+  },
+  {
+    "Nombre": "Marcelo",
+    "Pais": "Brasil",
+    "Clubes": "Fluminense;Real Madrid;Olympiacos;Fluminense"
+  },
+  {
+    "Nombre": "James Rodriguez",
+    "Pais": "Colombia",
+    "Clubes": "Envigado;Porto;Monaco;Real Madrid;Bayern Munich;Everton;São Paulo"
+  },
+  {
+    "Nombre": "Radamel Falcao",
+    "Pais": "Colombia",
+    "Clubes": "River Plate;Porto;Atletico Madrid;Monaco;Manchester United;Chelsea;Rayo Vallecano"
+  },
+  {
+    "Nombre": "Virgil van Dijk",
+    "Pais": "Paises Bajos",
+    "Clubes": "Groningen;Celtic;Southampton;Liverpool"
+  },
+  {
+    "Nombre": "Robert Lewandowski",
+    "Pais": "Polonia",
+    "Clubes": "Znicz Pruszkow;Lech Poznań;Borussia Dortmund;Bayern Munich;Barcelona"
+  },
+  {
+    "Nombre": "Manuel Neuer",
+    "Pais": "Alemania",
+    "Clubes": "Schalke 04;Bayern Munich"
+  },
+  {
+    "Nombre": "Thomas Muller",
+    "Pais": "Alemania",
+    "Clubes": "Bayern Munich"
+  }
+]

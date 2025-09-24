@@ -125,6 +125,24 @@
                 width: 80px;
                 font-size: 1.2rem;
             }
+
+            .vk-btn.correct {
+                background-color: green !important;
+                color: white;
+                border-color: green;
+            }
+
+            .vk-btn.present {
+                background-color: goldenrod !important;
+                color: white;
+                border-color: goldenrod;
+            }
+
+            .vk-btn.absent {
+                background-color: #555 !important;
+                color: white;
+                border-color: #555;
+            }
     </style>
 }
 
@@ -211,6 +229,7 @@
             for (let i = 0; i < maxCols; i++) {
                 if (attemptArr[i] === targetArr[i]) {
                     getCell(currentRow, i).classList.add('correct');
+                    updateKeyboardColors(attemptArr[i], 'correct');
                     checked[i] = true;
                 }
             }
@@ -219,8 +238,8 @@
                 const cell = getCell(currentRow, i);
                 if (cell.classList.contains('correct')) continue;
                 const idx = targetArr.findIndex((ch, j) => !checked[j] && ch === attemptArr[i]);
-                if (idx !== -1) { cell.classList.add('present'); checked[idx] = true; }
-                else { cell.classList.add('absent'); }
+                if (idx !== -1) { cell.classList.add('present'); updateKeyboardColors(attemptArr[i], 'present'); checked[idx] = true; }
+                else { cell.classList.add('absent'); updateKeyboardColors(attemptArr[i], 'absent'); }
             }
 
             if (attemptArr.join("") === letrasReales) {
@@ -265,5 +284,31 @@
             else if (key === 'ENTER') submitWord();
             else if (/^[A-Z]$/.test(key)) handleKey(key);
         });
+
+        function updateKeyboardColors(letter, state) {
+            const btn = Array.from(vkContainer.querySelectorAll('.vk-btn'))
+                .find(b => b.textContent === letter);
+
+            if (!btn) return;
+
+            // Si ya estaba en "correct", no lo degradamos
+            if (btn.classList.contains('correct')) return;
+
+            if (state === 'correct') {
+                btn.classList.remove('present', 'absent');
+                btn.classList.add('correct');
+            } else if (state === 'present') {
+                // Si estaba como "absent", lo actualizamos a "present"
+                if (!btn.classList.contains('present')) {
+                    btn.classList.remove('absent');
+                    btn.classList.add('present');
+                }
+            } else if (state === 'absent') {
+                // Solo lo ponemos en absent si no estaba en present/correct
+                if (!btn.classList.contains('present') && !btn.classList.contains('correct')) {
+                    btn.classList.add('absent');
+                }
+            }
+        }
     </script>
 }

@@ -1,7 +1,9 @@
 ﻿namespace FutArg11.Hubs
 {
+    using FutArg11.Models.Entities;
     using Microsoft.AspNetCore.SignalR;
     using System.IO;
+    using System.Text.Json;
 
     public class ImpostorHub : Hub
     {
@@ -19,13 +21,17 @@
             // Cargar futbolistas solo una vez
             if (futbolistas.Count == 0)
             {
-                var rutaCsv = Path.Combine(_env.WebRootPath, "data", "jugadores.csv");
-                if (File.Exists(rutaCsv))
+                var rutaJson = Path.Combine(_env.WebRootPath, "data", "jugadores.json");
+                if (File.Exists(rutaJson))
                 {
-                    futbolistas = File.ReadAllLines(rutaCsv)
-                                      .Select(l => l.Split(',')[0].Trim())
-                                      .Where(n => !string.IsNullOrWhiteSpace(n))
-                                      .ToList();
+                    var jsonContent = File.ReadAllText(rutaJson);
+
+                    var listaObjetos = JsonSerializer.Deserialize<List<Jugador>>(jsonContent);
+
+                    futbolistas = listaObjetos?
+                        .Where(f => !string.IsNullOrWhiteSpace(f.NombreCompleto))
+                        .Select(f => f.NombreCompleto.Trim())
+                        .ToList() ?? new List<string>();
                 }
             }
         }

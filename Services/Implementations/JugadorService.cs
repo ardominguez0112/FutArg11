@@ -1,17 +1,14 @@
+using System.Text.Json;
 using FutArg11.Models.Entities;
 using FutArg11.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 public class JugadorService : IJugadorService
 {
-    private readonly string _csvPath;
+    private readonly string _jsonPath;
 
     public JugadorService(IWebHostEnvironment env)
     {
-        _csvPath = Path.Combine(env.WebRootPath, "data", "jugadores.csv");
+        _jsonPath = Path.Combine(env.WebRootPath, "data", "jugadores.json");
     }
 
     public Jugador ObtenerJugadorAleatorio()
@@ -23,27 +20,16 @@ public class JugadorService : IJugadorService
 
     private List<Jugador> LeerJugadores()
     {
-        var lista = new List<Jugador>();
+        if (!File.Exists(_jsonPath))
+            throw new FileNotFoundException($"No se encontró el archivo: {_jsonPath}");
 
-        if (!File.Exists(_csvPath))
-            throw new FileNotFoundException($"No se encontró el archivo: {_csvPath}");
+        var json = File.ReadAllText(_jsonPath);
 
-        var lineas = File.ReadAllLines(_csvPath).Skip(1);
-        foreach (var linea in lineas)
-        {
-            var partes = linea.Split(',');
+        // Deserializamos directo a lista de Jugador
+        var lista = JsonSerializer.Deserialize<List<Jugador>>(json);
 
-            if (partes.Length >= 1)
-            {
-                var nombreCompleto = partes[0].Trim();
-
-                lista.Add(new Jugador
-                {
-                    NombreCompleto = nombreCompleto
-                    // No hace falta poner Apellido, se calcula solo
-                });
-            }
-        }
+        if (lista == null || lista.Count == 0)
+            throw new InvalidOperationException("No se encontraron jugadores en el archivo JSON.");
 
         return lista;
     }
