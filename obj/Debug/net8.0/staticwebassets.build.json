@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "msPt1bhaXWnXabgUaVS4I95LUzk+AcIR91Zrb9A/vos=",
+  "Hash": "9C3cGtwHEBjh6AtXUzkLcPoUGrpOA623bcdTbQbCIk0=",
   "Source": "FutArg11",
   "BasePath": "_content/FutArg11",
   "Mode": "Default",
@@ -549,6 +549,25 @@
       "OriginalItemSpec": "wwwroot\\images\\futargwordle.jpg"
     },
     {
+      "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\ganador2.jpg",
+      "SourceId": "FutArg11",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\",
+      "BasePath": "_content/FutArg11",
+      "RelativePath": "images/ganador2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ganador2.jpg"
+    },
+    {
       "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\guante.png",
       "SourceId": "FutArg11",
       "SourceType": "Discovered",
@@ -566,6 +585,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\guante.png"
+    },
+    {
+      "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\guess.jpg",
+      "SourceId": "FutArg11",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\",
+      "BasePath": "_content/FutArg11",
+      "RelativePath": "images/guess.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\guess.jpg"
     },
     {
       "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor2.jpg",
@@ -642,6 +680,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\pelota.png"
+    },
+    {
+      "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\perdedor2.jpg",
+      "SourceId": "FutArg11",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\",
+      "BasePath": "_content/FutArg11",
+      "RelativePath": "images/perdedor2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\perdedor2.jpg"
     },
     {
       "Identity": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\pinossea.png",

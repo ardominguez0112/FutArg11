@@ -109,8 +109,16 @@
       "PackagePath": "staticwebassets\\images\\futargwordle.jpg"
     },
     {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\ganador2.jpg",
+      "PackagePath": "staticwebassets\\images\\ganador2.jpg"
+    },
+    {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\guante.png",
       "PackagePath": "staticwebassets\\images\\guante.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\guess.jpg",
+      "PackagePath": "staticwebassets\\images\\guess.jpg"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\impostor2.jpg",
@@ -127,6 +135,10 @@
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\pelota.png",
       "PackagePath": "staticwebassets\\images\\pelota.png"
+    },
+    {
+      "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\perdedor2.jpg",
+      "PackagePath": "staticwebassets\\images\\perdedor2.jpg"
     },
     {
       "Id": "C:\\Users\\adominguez\\Documents\\My Web Sites\\FutArg11\\FutArg11\\wwwroot\\images\\pinossea.png",

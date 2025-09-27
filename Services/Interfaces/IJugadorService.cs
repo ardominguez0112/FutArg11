@@ -5,5 +5,6 @@ namespace FutArg11.Services.Interfaces
     public interface IJugadorService
     {
         Jugador ObtenerJugadorAleatorio();
+        List<Jugador> LeerJugadores();
     }
 }

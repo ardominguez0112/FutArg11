@@ -1,0 +1,181 @@
+﻿@model FutArg11.Models.Entities.Jugador
+
+<div class="container text-center mt-3">
+    <h2 id="tituloJuego" class="fw-bold text-primary mb-2">¿Quién es este jugador?</h2>
+
+    <div id="cardJuego" class="border-secondary mx-auto p-4" style="max-width: 500px; border-radius: 1rem;">
+
+        <!-- Contenedor de juego -->
+        <div id="clubesContainer">
+
+            <h4 class="my-3">Clubes por donde pasó:</h4>
+            <ul id="clubesList" class="list-group mb-4">
+                @foreach (var club in Model.Clubes.Split(';'))
+                {
+                    <li class="list-group-item">@club</li>
+                }
+            </ul>
+
+            <div id="paisPista" class="my-2 text-info fw-bold"></div>
+
+            <div class="d-flex align-items-center justify-content-center mx-1 mb-1 flex-wrap">
+                <h6 class="me-2 mb-0">Intentos:</h6>
+                <div id="corazonesContainer" class="d-flex flex-wrap mb-2"></div>
+            </div>
+
+            <div id="mensajeError" class="text-danger fw-bold mb-2"></div>
+            <div style="position: relative;">
+                <input type="text" id="txtRespuesta" class="form-control mb-3 text-center"
+                       placeholder="Escribe el nombre del jugador..." autocomplete="off" />
+                <ul id="sugerencias" class="list-group"
+                    style="position: absolute; width: 100%; top: 100%; left: 0; z-index: 1000; display: none; max-height: 150px; overflow-y: auto;"></ul>
+            </div>
+
+            <button class="btn btn-success w-100 mb-3" onclick="verificarRespuesta()">Adivinar</button>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Intercalado de colores en clubes */
+    #clubesList li:nth-child(odd) {
+        background-color: goldenrod !important;
+    }
+
+    #clubesList li:nth-child(even) {
+        background-color: lightslategrey !important;
+    }
+
+    #sugerencias li {
+        cursor: pointer !important;
+        padding: 5px 10px !important;
+        margin: 0 !important;
+    }
+
+        #sugerencias li:nth-child(even) {
+            background-color: #e9ecef !important;
+        }
+
+        #sugerencias li:nth-child(odd) {
+            background-color: #f8f9fa !important;
+        }
+</style>
+
+@section Scripts {
+    <script>
+        let intentos = 3;
+        const respuestaCorrecta = "@Model.NombreCompleto";
+        const paisJugador = "@Model.Pais";
+        const jugadores = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(((List<FutArg11.Models.Entities.Jugador>)ViewBag.TodosLosJugadores).Select(j => j.NombreCompleto)));
+
+        const input = document.getElementById("txtRespuesta");
+        const listaSugerencias = document.getElementById("sugerencias");
+        const corazonesContainer = document.getElementById("corazonesContainer");
+        const paisPista = document.getElementById("paisPista");
+        const mensajeError = document.getElementById("mensajeError");
+
+        function dibujarCorazones() {
+            corazonesContainer.innerHTML = '';
+            for (let i = 0; i < intentos; i++) {
+                const span = document.createElement('span');
+                span.textContent = '❤️';
+                span.style.fontSize = '1.5rem';
+                span.style.marginRight = '5px';
+                corazonesContainer.appendChild(span);
+            }
+        }
+        dibujarCorazones();
+
+        // Sugerencias dinámicas
+        input.addEventListener("input", () => {
+            const valor = input.value.trim().toLowerCase();
+            listaSugerencias.innerHTML = "";
+            if (!valor) { listaSugerencias.style.display = "none"; return; }
+
+            const matches = jugadores.filter(j => j.toLowerCase().includes(valor));
+            matches.forEach(jugador => {
+                const li = document.createElement("li");
+                li.textContent = jugador;
+                li.classList.add("list-group-item");
+                li.addEventListener("click", () => { input.value = jugador; listaSugerencias.style.display = "none"; });
+                listaSugerencias.appendChild(li);
+            });
+            listaSugerencias.style.display = matches.length ? "block" : "none";
+        });
+
+        document.addEventListener("click", (e) => { if (!input.contains(e.target)) listaSugerencias.style.display = "none"; });
+
+        function mostrarErrorTemporal(mensaje) {
+            mensajeError.textContent = mensaje;
+            setTimeout(() => {
+                mensajeError.textContent = "";
+            }, 1500);
+        }
+
+        function verificarRespuesta() {
+            const respuesta = input.value.trim().toLowerCase();
+            if (!respuesta) return;
+
+            input.value = ""; // limpia input en cada intento
+
+            if (respuesta === respuestaCorrecta.toLowerCase()) {
+                mostrarResultado(true);
+            } else {
+                intentos--;
+                dibujarCorazones();
+
+                // Muestra error solo si aún quedan intentos (no en la última)
+                if (intentos > 0) {
+                    mostrarErrorTemporal("Incorrecto!");
+                }
+
+                if (intentos === 0) {
+                    mostrarResultado(false);
+                } else if (intentos === 1) {
+                    paisPista.textContent = `Pista final! País del jugador: ${paisJugador}`;
+                }
+            }
+        }
+
+        function mostrarResultado(gano) {
+            const titulo = document.getElementById("tituloJuego");
+            if (titulo) titulo.remove();
+
+            const cardJuego = document.getElementById("cardJuego");
+            cardJuego.innerHTML = "";
+
+            const img = document.createElement("img");
+            img.src = `/images/${gano ? 'ganador2.jpg' : 'perdedor2.jpg'}`;
+            img.style.width = "100%";
+            img.style.maxHeight = "60vh";
+            img.style.objectFit = "cover";
+            img.style.display = "block";
+            img.style.margin = "0 auto";
+
+            const mensaje = document.createElement("h4");
+            mensaje.textContent = gano ? `¡Bien! Era ${respuestaCorrecta}` : `Perdiste!. Era ${respuestaCorrecta}`;
+            mensaje.className = gano ? "text-success fw-bold my-3" : "text-danger fw-bold my-3";
+            mensaje.style.textAlign = "center";
+
+            const btnVolver = document.createElement("button");
+            btnVolver.textContent = "Volver a jugar";
+            btnVolver.className = "btn btn-primary me-2 mb-2";
+            btnVolver.onclick = () => location.reload();
+
+            const btnInicio = document.createElement("button");
+            btnInicio.textContent = "Volver al inicio";
+            btnInicio.className = "btn btn-secondary mb-2";
+            btnInicio.onclick = () => location.href = "/";
+
+            const contenedorBotones = document.createElement("div");
+            contenedorBotones.className = "mt-3 d-flex justify-content-center flex-wrap";
+            contenedorBotones.appendChild(btnVolver);
+            contenedorBotones.appendChild(btnInicio);
+
+            cardJuego.appendChild(img);
+            cardJuego.appendChild(mensaje);
+            cardJuego.appendChild(contenedorBotones);
+        }
+    </script>
+}

@@ -17,5 +17,6 @@ namespace FutArg11.Controllers
             //var jugadores = _jugadorService.ObtenerJugadores();
             return View();
         }
+
     }
 }

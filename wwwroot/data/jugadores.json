@@ -2,7 +2,7 @@
   {
     "Nombre": "Lionel Messi",
     "Pais": "Argentina",
-    "Clubes": "Newell's Old Boys;Barcelona;PSG;Inter Miami"
+    "Clubes": "Barcelona;PSG;Inter Miami"
   },
   {
     "Nombre": "Cristiano Ronaldo",
@@ -12,7 +12,7 @@
   {
     "Nombre": "Diego Maradona",
     "Pais": "Argentina",
-    "Clubes": "Argentinos Juniors;Boca Juniors;Barcelona;Napoli;Sevilla"
+    "Clubes": "Argentinos Juniors;Boca Juniors;Newells;Barcelona;Napoli;Sevilla"
   },
   {
     "Nombre": "Pele",
@@ -27,7 +27,7 @@
   {
     "Nombre": "Ronaldinho",
     "Pais": "Brasil",
-    "Clubes": "Grêmio;PSG;Barcelona;Milan"
+    "Clubes": "Grêmio;PSG;Barcelona;Milan; Atletico Mineiro"
   },
   {
     "Nombre": "Neymar Jr",
@@ -47,7 +47,7 @@
   {
     "Nombre": "Robert Lewandowski",
     "Pais": "Polonia",
-    "Clubes": "Znicz Pruszkow;Lech Poznań;Borussia Dortmund;Bayern Munich;Barcelona"
+    "Clubes": "Znicz Pruszkow;Lech Poznan;Borussia Dortmund;Bayern Munich;Barcelona"
   },
   {
     "Nombre": "Karim Benzema",
@@ -57,7 +57,7 @@
   {
     "Nombre": "Luka Modrić",
     "Pais": "Croacia",
-    "Clubes": "Dinamo Zagreb;Tottenham;Real Madrid"
+    "Clubes": "Dinamo Zagreb;Tottenham;Real Madrid; Milan"
   },
   {
     "Nombre": "Andres Iniesta",
@@ -137,7 +137,7 @@
   {
     "Nombre": "Sergio Ramos",
     "Pais": "España",
-    "Clubes": "Sevilla;Real Madrid;PSG;Sevilla"
+    "Clubes": "Sevilla;Real Madrid;PSG;Monterrey"
   },
   {
     "Nombre": "Rivaldo",
@@ -172,7 +172,7 @@
   {
     "Nombre": "Luis Suarez",
     "Pais": "Uruguay",
-    "Clubes": "Nacional;Groningen;Ajax;Liverpool;Barcelona;Atletico Madrid"
+    "Clubes": "Nacional;Groningen;Ajax;Liverpool;Barcelona;Atletico Madrid;Gremio"
   },
   {
     "Nombre": "Edinson Cavani",
@@ -182,12 +182,12 @@
   {
     "Nombre": "James Rodriguez",
     "Pais": "Colombia",
-    "Clubes": "Envigado;Porto;Monaco;Real Madrid;Bayern Munich;Everton;São Paulo"
+    "Clubes": "Envigado;Porto;Monaco;Real Madrid;Bayern Munich;Everton;São Paulo;Leon"
   },
   {
     "Nombre": "Radamel Falcao",
     "Pais": "Colombia",
-    "Clubes": "River Plate;Porto;Atletico Madrid;Monaco;Manchester United;Chelsea;Rayo Vallecano"
+    "Clubes": "River Plate;Porto;Atletico Madrid;Monaco;Manchester United;Chelsea;Rayo Vallecano;Millonarios"
   },
   {
     "Nombre": "Arturo Vidal",
@@ -197,7 +197,7 @@
   {
     "Nombre": "Alexis Sanchez",
     "Pais": "Chile",
-    "Clubes": "Cobreloa;Udinese;Barcelona;Arsenal;Manchester United;Inter Milan;Marsella"
+    "Clubes": "Cobreloa;River Plate;Udinese;Barcelona;Arsenal;Manchester United;Inter Milan;Marsella"
   },
   {
     "Nombre": "Zlatan Ibrahimovic",
@@ -272,7 +272,7 @@
   {
     "Nombre": "Mesut Ozil",
     "Pais": "Alemania",
-    "Clubes": "Schalke 04;Werder Bremen;Real Madrid;Arsenal;Fenerbahçe"
+    "Clubes": "Schalke 04;Werder Bremen;Real Madrid;Arsenal;Fenerbahce"
   },
   {
     "Nombre": "Toni Kroos",
@@ -292,7 +292,7 @@
   {
     "Nombre": "Arjen Robben",
     "Pais": "Paises Bajos",
-    "Clubes": "Groningen;PSV;Chelsea;Real Madrid;Bayern Munich;Groningen"
+    "Clubes": "Groningen;PSV;Chelsea;Real Madrid;Bayern Munich"
   },
   {
     "Nombre": "Wesley Sneijder",
@@ -337,7 +337,7 @@
   {
     "Nombre": "Angel Di Maria",
     "Pais": "Argentina",
-    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus;Benfica"
+    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus"
   },
   {
     "Nombre": "Javier Mascherano",
@@ -452,12 +452,7 @@
   {
     "Nombre": "Julian Alvarez",
     "Pais": "Argentina",
-    "Clubes": "River Plate;Manchester City"
-  },
-  {
-    "Nombre": "Dibu Martinez",
-    "Pais": "Argentina",
-    "Clubes": "Arsenal;Aston Villa"
+    "Clubes": "River Plate;Manchester City;Atletico Madrid"
   },
   {
     "Nombre": "Rodri",
@@ -467,7 +462,7 @@
   {
     "Nombre": "Kevin De Bruyne",
     "Pais": "Belgica",
-    "Clubes": "Genk;Chelsea;Wolfsburg;Manchester City"
+    "Clubes": "Genk;Chelsea;Wolfsburg;Manchester City;Napoli"
   },
   {
     "Nombre": "Eden Hazard",
@@ -477,7 +472,7 @@
   {
     "Nombre": "Romelu Lukaku",
     "Pais": "Belgica",
-    "Clubes": "Anderlecht;Chelsea;Everton;Manchester United;Inter Milan;Roma"
+    "Clubes": "Anderlecht;Chelsea;Everton;Manchester United;Inter Milan;Roma;Napoli"
   },
   {
     "Nombre": "Youri Tielemans",
@@ -547,7 +542,7 @@
   {
     "Nombre": "German Pezzella",
     "Pais": "Argentina",
-    "Clubes": "River Plate;Real Betis;Fiorentina;Betis"
+    "Clubes": "River Plate;Real Betis;Fiorentina"
   },
   {
     "Nombre": "Lisandro Martinez",
@@ -562,7 +557,7 @@
   {
     "Nombre": "Marcos Acuña",
     "Pais": "Argentina",
-    "Clubes": "Ferro;Racing Club;Sporting CP;Sevilla"
+    "Clubes": "Ferro;Racing Club;Sporting CP;Sevilla;River Plate"
   },
   {
     "Nombre": "Leandro Paredes",
@@ -572,7 +567,7 @@
   {
     "Nombre": "Rodrigo De Paul",
     "Pais": "Argentina",
-    "Clubes": "Racing Club;Valencia;Udinese;Atletico Madrid"
+    "Clubes": "Racing Club;Valencia;Udinese;Atletico Madrid;Inter Miami"
   },
   {
     "Nombre": "Alexis Mac Allister",
@@ -592,7 +587,7 @@
   {
     "Nombre": "Angel Di Maria",
     "Pais": "Argentina",
-    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus;Benfica"
+    "Clubes": "Rosario Central;Benfica;Real Madrid;Manchester United;PSG;Juventus"
   },
   {
     "Nombre": "Paulo Dybala",
@@ -602,7 +597,7 @@
   {
     "Nombre": "Lionel Messi",
     "Pais": "Argentina",
-    "Clubes": "Newell's Old Boys;Barcelona;PSG;Inter Miami"
+    "Clubes": "Barcelona;PSG;Inter Miami"
   },
   {
     "Nombre": "Lautaro Martinez",
@@ -610,19 +605,14 @@
     "Clubes": "Racing Club;Inter Milan"
   },
   {
-    "Nombre": "Julian Alvarez",
-    "Pais": "Argentina",
-    "Clubes": "River Plate;Manchester City"
-  },
-  {
     "Nombre": "Angel Correa",
     "Pais": "Argentina",
-    "Clubes": "San Lorenzo;Atletico Madrid"
+    "Clubes": "San Lorenzo;Atletico Madrid;Tigres"
   },
   {
     "Nombre": "Thiago Almada",
     "Pais": "Argentina",
-    "Clubes": "Velez;Atlanta United"
+    "Clubes": "Velez;Atlanta United;Botafogo;Lyon"
   },
   {
     "Nombre": "Exequiel Palacios",
@@ -652,12 +642,12 @@
   {
     "Nombre": "Zlatan Ibrahimovic",
     "Pais": "Suecia",
-    "Clubes": "Malmö;Ajax;Juventus;Inter Milan;Barcelona;Milan;PSG;Manchester United;LA Galaxy;Milan"
+    "Clubes": "Malmo;Ajax;Juventus;Inter Milan;Barcelona;PSG;Manchester United;LA Galaxy;Milan"
   },
   {
     "Nombre": "Ronaldinho",
     "Pais": "Brasil",
-    "Clubes": "Grêmio;PSG;Barcelona;Milan"
+    "Clubes": "Grêmio;PSG;Barcelona;Milan;Atletico Mineiro"
   },
   {
     "Nombre": "Zinedine Zidane",
@@ -665,7 +655,7 @@
     "Clubes": "Cannes;Bordeaux;Juventus;Real Madrid"
   },
   {
-    "Nombre": "Nazario Ronaldo",
+    "Nombre": "Ronaldo",
     "Pais": "Brasil",
     "Clubes": "Cruzeiro;PSV;Barcelona;Inter Milan;Real Madrid;Milan"
   },
@@ -680,56 +670,6 @@
     "Clubes": "Argentinos Juniors;Boca Juniors;Barcelona;Napoli;Sevilla"
   },
   {
-    "Nombre": "Mohamed Salah",
-    "Pais": "Egipto",
-    "Clubes": "El Mokawloon;Basel;Chelsea;Fiorentina;Roma;Liverpool"
-  },
-  {
-    "Nombre": "Karim Benzema",
-    "Pais": "Francia",
-    "Clubes": "Lyon;Real Madrid;Al-Ittihad"
-  },
-  {
-    "Nombre": "Erling Haaland",
-    "Pais": "Noruega",
-    "Clubes": "Bryne;Molde;RB Salzburg;Borussia Dortmund;Manchester City"
-  },
-  {
-    "Nombre": "Luis Suarez",
-    "Pais": "Uruguay",
-    "Clubes": "Nacional;Groningen;Ajax;Liverpool;Barcelona;Atletico Madrid"
-  },
-  {
-    "Nombre": "Edinson Cavani",
-    "Pais": "Uruguay",
-    "Clubes": "Danubio;Palermo;Napoli;PSG;Manchester United;Valencia;Boca Juniors"
-  },
-  {
-    "Nombre": "Gerard Pique",
-    "Pais": "España",
-    "Clubes": "Manchester United;Barcelona"
-  },
-  {
-    "Nombre": "Andres Iniesta",
-    "Pais": "España",
-    "Clubes": "Barcelona;Vissel Kobe"
-  },
-  {
-    "Nombre": "Xavi",
-    "Pais": "España",
-    "Clubes": "Barcelona;Al Sadd"
-  },
-  {
-    "Nombre": "Sergio Ramos",
-    "Pais": "España",
-    "Clubes": "Sevilla;Real Madrid;PSG;Sevilla"
-  },
-  {
-    "Nombre": "Iker Casillas",
-    "Pais": "España",
-    "Clubes": "Real Madrid;Porto"
-  },
-  {
     "Nombre": "Gareth Bale",
     "Pais": "Gales",
     "Clubes": "Southampton;Tottenham;Real Madrid;Los Angeles FC"
@@ -740,33 +680,8 @@
     "Clubes": "Fluminense;Real Madrid;Olympiacos;Fluminense"
   },
   {
-    "Nombre": "James Rodriguez",
-    "Pais": "Colombia",
-    "Clubes": "Envigado;Porto;Monaco;Real Madrid;Bayern Munich;Everton;São Paulo"
-  },
-  {
-    "Nombre": "Radamel Falcao",
-    "Pais": "Colombia",
-    "Clubes": "River Plate;Porto;Atletico Madrid;Monaco;Manchester United;Chelsea;Rayo Vallecano"
-  },
-  {
     "Nombre": "Virgil van Dijk",
     "Pais": "Paises Bajos",
     "Clubes": "Groningen;Celtic;Southampton;Liverpool"
-  },
-  {
-    "Nombre": "Robert Lewandowski",
-    "Pais": "Polonia",
-    "Clubes": "Znicz Pruszkow;Lech Poznań;Borussia Dortmund;Bayern Munich;Barcelona"
-  },
-  {
-    "Nombre": "Manuel Neuer",
-    "Pais": "Alemania",
-    "Clubes": "Schalke 04;Bayern Munich"
-  },
-  {
-    "Nombre": "Thomas Muller",
-    "Pais": "Alemania",
-    "Clubes": "Bayern Munich"
   }
 ]

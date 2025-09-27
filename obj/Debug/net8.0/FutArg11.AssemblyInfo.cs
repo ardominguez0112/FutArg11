@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FutArg11")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25f01179060e9de9851906c525aeec1089abe6f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9cfb3516753e4da093b3c8e6e0d29a97a9aec21f")]
 [assembly: System.Reflection.AssemblyProductAttribute("FutArg11")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FutArg11")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -18,7 +18,7 @@ public class JugadorService : IJugadorService
         return jugadores[random.Next(jugadores.Count)];
     }
 
-    private List<Jugador> LeerJugadores()
+    public List<Jugador> LeerJugadores()
     {
         if (!File.Exists(_jsonPath))
             throw new FileNotFoundException($"No se encontró el archivo: {_jsonPath}");
